@@ -8,32 +8,27 @@ public class Utilisateur {
 	private String prenom;
 	private String email;
 	private String telephone;
-	private String rue;
-	private String codePostal;
-	private String ville;
 	private String motDePasse;
 	private int credit;
 	private boolean administrateur;
+	private Adresse adresse;
 	
 	public Utilisateur(Integer noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
-			String rue, String codePostal, String ville, String motDePasse, int credit, boolean administrateur) {
+			String motDePasse, int credit, boolean administrateur, Adresse adresse) {
 		this.noUtilisateur = noUtilisateur;
 		this.pseudo = pseudo;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
 		this.telephone = telephone;
-		this.rue = rue;
-		this.codePostal = codePostal;
-		this.ville = ville;
 		this.motDePasse = motDePasse;
+		this.adresse = adresse;
 		this.credit = credit;
 		this.administrateur = administrateur;
 	}
 
-	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
-			String codePostal, String ville, String motDePasse, int credit, boolean administrateur) {
-		this(null, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
+	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String motDePasse, int credit, boolean administrateur, Adresse adresse) {
+		this(null, pseudo, nom, prenom, email, telephone, motDePasse, credit, administrateur, adresse);
 	}
 
 	public int getNoUtilisateur() {
@@ -84,29 +79,6 @@ public class Utilisateur {
 		this.telephone = telephone;
 	}
 
-	public String getRue() {
-		return rue;
-	}
-
-	public void setRue(String rue) {
-		this.rue = rue;
-	}
-
-	public String getCodePostal() {
-		return codePostal;
-	}
-
-	public void setCodePostal(String codePostal) {
-		this.codePostal = codePostal;
-	}
-
-	public String getVille() {
-		return ville;
-	}
-
-	public void setVille(String ville) {
-		this.ville = ville;
-	}
 
 	public String getMotDePasse() {
 		return motDePasse;
@@ -131,5 +103,22 @@ public class Utilisateur {
 	public void setAdministrateur(boolean administrateur) {
 		this.administrateur = administrateur;
 	}
+
+	public Adresse getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(Adresse adresse) {
+		this.adresse = adresse;
+	}
+
+	public void setNoUtilisateur(Integer noUtilisateur) {
+		this.noUtilisateur = noUtilisateur;
+	}
 	
+	@Override
+	public String toString() {
+		return String.format("Utilisateur : pseudo=%s%n, nom=%s%n, prenom=%s%n, email=%s%n, telephone=%s%n, motDePasse=%s%n, credit=%d%n, rue=%s%n, cp=%s%n, ville=%s%n", 
+				pseudo, nom, prenom, email, telephone, motDePasse, credit, adresse.getRue(), adresse.getCodePostal(), adresse.getVille());
+	}
 }

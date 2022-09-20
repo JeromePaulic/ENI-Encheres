@@ -7,4 +7,6 @@ public interface UtilisateurDAO {
 	Utilisateur getUtilisateurByEmail(String email);
 	
 	Utilisateur getUtilisateurByPseudo(String pseudo);
+	
+	Utilisateur insertUtilisateur(Utilisateur utilisateur);
 }
