@@ -1,6 +1,7 @@
 package fr.eni.encheres.servlets;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.encheres.BusinessException;
+import fr.eni.encheres.bll.CategorieManager;
 import fr.eni.encheres.bll.UtilisateurManager;
+import fr.eni.encheres.bo.Categorie;
 import fr.eni.encheres.bo.Utilisateur;
 
 @WebServlet("/connexion")
@@ -32,6 +35,8 @@ public class ServletConnexion extends HttpServlet {
 		String mdp = request.getParameter("motDePasse");
 		Utilisateur utilisateur = null;
 		try {
+			List<Categorie> categories = CategorieManager.getInstance().selectAll();
+			request.setAttribute("categories", categories);
 			utilisateur = UtilisateurManager.getInstance().seConnecter(login, mdp);
 			request.getSession().setAttribute("utilisateur", utilisateur);
 			request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
