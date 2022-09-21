@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import fr.eni.encheres.bll.CategorieManager;
 import fr.eni.encheres.bo.Categorie;
 
-@WebServlet("/")
+@WebServlet("/accueil")
 public class ServletAccueil extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;

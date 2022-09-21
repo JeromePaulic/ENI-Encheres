@@ -27,7 +27,7 @@ public class ServletDeconnexion extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession s =request.getSession();
 		s.invalidate();
-		response.sendRedirect("/ENI-Encheres/");
+		response.sendRedirect("accueil");
 	}
 
 	/**
