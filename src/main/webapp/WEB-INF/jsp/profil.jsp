@@ -8,14 +8,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="${pageContext.request.contextPath}/css/menu.css" rel="stylesheet">
 <title>Profil</title>
 </head>
 <body>
 
-
-
-
- <h1>Profil</h1>
+ <header>
+		<h1> <h1>Profil</h1></h1>
+		<nav class="menu">
+			<a href="${pageContext.request.contextPath}/enchere">Enchère</a> 
+			<a href ="${pageContext.request.contextPath}/vente">Vendre un Article</a>
+			<a href ="${pageContext.request.contextPath}/profil">Mon Profil</a>
+			<a href ="${pageContext.request.contextPath}/deconnexion">Déconnexion</a>
+			
+		</nav>
+	</header>
+ 
+ 
+ 
+ 
 	<div>
 		<form method="POST">
 			<div>
