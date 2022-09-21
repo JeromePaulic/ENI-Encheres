@@ -34,7 +34,7 @@ public class ServletConnexion extends HttpServlet {
 		try {
 			utilisateur = UtilisateurManager.getInstance().seConnecter(login, mdp);
 			request.getSession().setAttribute("utilisateur", utilisateur);
-			response.sendRedirect("http://www.google.fr");
+			request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
 		} catch (BusinessException e) {
 			request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
 			request.getRequestDispatcher("/WEB-INF/jsp/connexion.jsp").forward(request, response);
