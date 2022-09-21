@@ -44,17 +44,45 @@ public class UtilisateurManager {
 		
 		Adresse adresse = new Adresse(rue, codePostal, ville);
 		Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, motDePasse, 0, false, adresse);
-		try {
-			validerUtilisateur(utilisateur, confirmationMotDePasse);
-			utilisateur = utilisateurDAO.insertUtilisateur(utilisateur);
-		} catch (BusinessException e) {
-			throw e;
-		}
+		validerUtilisateur(utilisateur, confirmationMotDePasse);
+		utilisateur = utilisateurDAO.insertUtilisateur(utilisateur);
 		return utilisateur;
 	}
 	
 	private boolean validerUtilisateur(Utilisateur utilisateur, String confirmationMotDePasse) throws BusinessException {
-		BusinessException be = null;
+		BusinessException be = new BusinessException();
+		if (emailDejaExistant(utilisateur.getEmail())) {
+			be.ajouterErreur(CodesResultatBLL.EMAIL_DEJA_EXISTANT);
+		}
+		if (pseudoDejaExistant(utilisateur.getPseudo())) {
+			be.ajouterErreur(CodesResultatBLL.PSEUDO_DEJA_EXISTANT);
+		}
+		if (!utilisateur.getMotDePasse().equals(confirmationMotDePasse)) {
+			be.ajouterErreur(CodesResultatBLL.ERREUR_CONFIRMATION_MDP);
+		}
+		if (!utilisateur.getPseudo().matches("\\w+")) {
+			be.ajouterErreur(CodesResultatBLL.PSEUDO_NON_VALIDE);
+		}
+		if (!utilisateur.getNom().matches("[A-Za-z]+")) {
+			be.ajouterErreur(CodesResultatBLL.NOM_NON_VALIDE);
+		}
+		if (!utilisateur.getPrenom().matches("[A-Za-z]+")) {
+			be.ajouterErreur(CodesResultatBLL.PRENOM_NON_VALIDE);
+		}
+		if (!utilisateur.getAdresse().getCodePostal().matches("\\d{5}")) {
+			be.ajouterErreur(CodesResultatBLL.CP_NON_VALIDE);
+		}
+		if (be.hasErreurs()) {
+			throw be;
+		}
 		return true;
+	}
+	
+	private boolean emailDejaExistant(String email) {
+		return utilisateurDAO.getUtilisateurByEmail(email) != null;
+	}
+
+	private boolean pseudoDejaExistant(String pseudo) {
+		return utilisateurDAO.getUtilisateurByPseudo(pseudo) != null;
 	}
 }
