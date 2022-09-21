@@ -35,11 +35,9 @@ public class ServletConnexion extends HttpServlet {
 		String mdp = request.getParameter("motDePasse");
 		Utilisateur utilisateur = null;
 		try {
-			List<Categorie> categories = CategorieManager.getInstance().selectAll();
-			request.setAttribute("categories", categories);
 			utilisateur = UtilisateurManager.getInstance().seConnecter(login, mdp);
 			request.getSession().setAttribute("utilisateur", utilisateur);
-			request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
+			response.sendRedirect("/ENI-Encheres/");
 		} catch (BusinessException e) {
 			request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
 			request.getRequestDispatcher("/WEB-INF/jsp/connexion.jsp").forward(request, response);

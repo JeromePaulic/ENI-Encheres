@@ -45,7 +45,7 @@ public class ServletCreationCompte extends HttpServlet {
 			utilisateur = UtilisateurManager.getInstance().creerCompte(
 					pseudo, nom, prenom, email, telephone, motDePasse, confirmationMotDePasse, rue, codePostal, ville, 0, false);
 			request.getSession().setAttribute("utilisateur", utilisateur);
-			request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
+			response.sendRedirect("/ENI-Encheres/");
 		} catch (BusinessException e) {
 			request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
 			request.getRequestDispatcher("/WEB-INF/jsp/creationCompte.jsp").forward(request, response);

@@ -27,9 +27,7 @@ public class ServletDeconnexion extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession s =request.getSession();
 		s.invalidate();
-		List<Categorie> categories = CategorieManager.getInstance().selectAll();
-		request.setAttribute("categories", categories);
-		request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
+		response.sendRedirect("/ENI-Encheres/");
 	}
 
 	/**
