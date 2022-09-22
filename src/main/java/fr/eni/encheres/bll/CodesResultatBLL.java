@@ -34,7 +34,35 @@ public abstract class CodesResultatBLL {
 	 */
 	public static final int PRENOM_NON_VALIDE = 20006;
 	/**
-	 * Echec création compte : le code postal n'est pas valide
+	 * Echec création adresse : le code postal n'est pas valide
 	 */
 	public static final int CP_NON_VALIDE = 20007;
+	/**
+	 * Echec création adresse : la rue n'est pas valide
+	 */
+	public static final int RUE_NON_VALIDE = 20008;
+	/**
+	 * Echec création adresse : la ville n'est pas valide
+	 */
+	public static final int VILLE_NON_VALIDE = 20009;
+	/**
+	 * Echec création article : le nom dépasse 30 caractères
+	 */
+	public static final int NOM_ARTICLE_TROP_LONG = 20010;
+	/**
+	 * Echec création article : la description dépasse 300 caractères
+	 */
+	public static final int DESCRIPTION_ARTICLE_TROP_LONGUE = 20011;
+	/**
+	 * Echec création article : la description dépasse 300 caractères
+	 */
+	public static final int ERREUR_DATE_DEBUT_ENCHERES = 20012;
+	/**
+	 * Echec création article : la description dépasse 300 caractères
+	 */
+	public static final int ERREUR_DATE_FIN_ENCHERES = 20013;
+	/**
+	 * Echec création article : la description dépasse 300 caractères
+	 */
+	public static final int PRIX_INITIAL_NEGATIF = 20014;
 }

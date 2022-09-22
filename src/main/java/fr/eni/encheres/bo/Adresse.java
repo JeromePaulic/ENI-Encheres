@@ -32,7 +32,7 @@ public class Adresse {
 		this.noAdresse = noAdresse;
 	}
 
-	public int getNoUtilisateur() {
+	public Integer getNoUtilisateur() {
 		return noUtilisateur;
 	}
 
@@ -64,4 +64,20 @@ public class Adresse {
 		this.ville = ville;
 	}
 	
+	@Override
+	public String toString() {
+		return String.format("Adresse noUtilisateur=%d, rue=%s, cp=%s, ville=%s%n", noUtilisateur, rue, codePostal, ville);
+	}
+	
+	public boolean equals(Adresse adresse) {
+		if (
+			this.noUtilisateur != adresse.getNoUtilisateur() ||
+			!this.rue.equals(adresse.getRue()) ||
+			!this.codePostal.equals(adresse.getCodePostal()) ||
+			!this.ville.equals(adresse.getVille())
+		) {
+			return false;
+		}
+		return true;
+	}
 }

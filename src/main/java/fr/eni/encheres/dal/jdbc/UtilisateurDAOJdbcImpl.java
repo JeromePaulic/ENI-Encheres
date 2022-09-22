@@ -13,8 +13,8 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	
 	private final String INSERT_UTILISATEUR = "INSERT INTO UTILISATEURS (pseudo, nom, prenom, email, telephone, mot_de_passe, credit, administrateur) VALUES (?,?,?,?,?,?,?,?);";
 	private final String INSERT_ADRESSE = "INSERT INTO ADRESSES (rue, code_postal, ville, no_utilisateur) VALUES (?,?,?,?);";
-	private final String SELECT_BY_EMAIL = "SELECT u.no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur FROM UTILISATEURS u JOIN ADRESSES a ON u.no_utilisateur = a.no_utilisateur WHERE email = ?;";
-	private final String SELECT_BY_PSEUDO = "SELECT u.no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur FROM UTILISATEURS u JOIN ADRESSES a ON u.no_utilisateur = a.no_utilisateur WHERE pseudo = ?;";
+	private final String SELECT_BY_EMAIL = "SELECT u.no_utilisateur, no_adresse, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur FROM UTILISATEURS u JOIN ADRESSES a ON u.no_utilisateur = a.no_utilisateur WHERE email = ?;";
+	private final String SELECT_BY_PSEUDO = "SELECT u.no_utilisateur, no_adresse, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur FROM UTILISATEURS u JOIN ADRESSES a ON u.no_utilisateur = a.no_utilisateur WHERE pseudo = ?;";
 
 	private Utilisateur getUtilisateurByLogin(String login, String requete) {
 		Utilisateur utilisateur = null;
@@ -24,6 +24,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			try (ResultSet rs = pstmt.executeQuery()) {				
 				if (rs.next()) {
 					Adresse adresse = new Adresse(
+							rs.getInt("no_adresse"),
 							rs.getInt("no_utilisateur"),
 							rs.getString("rue"),
 							rs.getString("code_postal"),
