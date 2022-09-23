@@ -65,4 +65,9 @@ public abstract class CodesResultatBLL {
 	 * Echec création article : la description dépasse 300 caractères
 	 */
 	public static final int PRIX_INITIAL_NEGATIF = 20014;
+	/**
+	 * Echec maj compte : le mot de passe est incorrect
+	 */
+	public static final int ERREUR_MDP = 20015;
+	
 }

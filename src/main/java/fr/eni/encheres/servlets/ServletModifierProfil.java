@@ -7,10 +7,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.encheres.BusinessException;
+import fr.eni.encheres.bll.UtilisateurManager;
+import fr.eni.encheres.bo.Adresse;
+import fr.eni.encheres.bo.Utilisateur;
+
 /**
  * Servlet implementation class ServletModifierProfil
  */
-@WebServlet("/ServletModifierProfil")
+@WebServlet("/modifier")
 public class ServletModifierProfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -26,11 +31,8 @@ public class ServletModifierProfil extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
-		String nextPage = "/WEB-INF/modifierProfil.jsp";
-
-		request.getRequestDispatcher(nextPage).forward(request, response);
+		
+		request.getRequestDispatcher("/WEB-INF/jsp/modifierProfil.jsp").forward(request, response);
 		
 		
 		
@@ -41,41 +43,35 @@ public class ServletModifierProfil extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		Utilisateur utilisateurSession=(Utilisateur) request.getSession().getAttribute("utilisateur");
+		int noUtilisateur= utilisateurSession.getNoUtilisateur();
+		String pseudo = request.getParameter("pseudo");
+		String nom = request.getParameter("nom");
+		String prenom = request.getParameter("prenom");
+		String email = request.getParameter("email");
+		String telephone = request.getParameter("telephone");
+		String rue = request.getParameter("rue");
+		String codePostal = request.getParameter("codePostal");
+		String ville = request.getParameter("ville");
+		String motDePasse =request.getParameter("motDePasseAncien");
+		String motDePasseNew= request.getParameter("motDePasseNew");
+		String confirmationMotDePasse = request.getParameter("confirmationMotDePasse");
+		int credit = utilisateurSession.getCredit();
 		
-		String nextPage = "/WEB-INF/modifierProfil.jsp";
-		boolean isConnecte = true;
 		
-		// Modifier profil
-		if (request.getParameter("enregistrer") != null) {
-			try {
-				try {
-					if (manager.verifInscription(request.getParameter("mdp"), request.getParameter("confirmation"),
-							request.getParameter("pseudo"), request.getParameter("email"))) {
-						utilisateur.getPseudo().setPseudo(request.getParameter("pseudo"));
-						utilisateur.getUtilisateur().setPrenom(request.getParameter("prenom"));
-						utilisateur.getUtilisateur().setTelephone(request.getParameter("telephone"));
-						utilisateur.getUtilisateur().setCodePostal(request.getParameter("codePostal"));
-						utilisateur.getUtilisateur().setMotDePasse(request.getParameter("mdp"));
-						utilisateur.getUtilisateur().setNom(request.getParameter("nom"));
-						utilisateur.getUtilisateur().setEmail(request.getParameter("email"));
-						utilisateur.getUtilisateur().setRue(request.getParameter("rue"));
-						utilisateur.getUtilisateur().setVille(request.getParameter("ville"));
-						manager.updateUtilisateur(utilisateur.getUtilisateur());
-						request.setAttribute("msgModif", "Votre profil à été modifié");
-						nextPage = "/WEB-INF/modifierProfil.jsp";
-					}
-				}  {
-					request.setAttribute("erreurs", e.getMessages());
-					nextPage = "/WEB-INF/modifierProfil.jsp";
-					e.printStackTrace();
-				}
-			}  {
-				request.setAttribute("erreur", e.getMessage());
-				;
-			}
+		Adresse adresse = new Adresse(noUtilisateur,rue, codePostal, ville);
+		Utilisateur user = new Utilisateur(noUtilisateur,pseudo,nom,prenom,email,telephone,motDePasse,credit,false,adresse );
+		
+		try {
+			
+			user = UtilisateurManager.getInstance().majProfil(user ,confirmationMotDePasse,utilisateurSession,motDePasseNew);
+			response.sendRedirect("accueil");
 	
-		
-		
+			
+		} catch (BusinessException e) {
+			request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
+			request.getRequestDispatcher("/WEB-INF/jsp/modifierProfil.jsp").forward(request, response);
+		}
 		
 		
 		

@@ -13,6 +13,7 @@
 </head>
 <body>
 
+
  <header>
 		<h1> <h1>Profil</h1></h1>
 		<nav class="menu">
@@ -53,12 +54,9 @@
 			<div>
 				<p><span>Ville : </span><span>${utilisateur.getAdresse().getVille()}</span></p>
 			</div>
-			<input type="submit" name="modifier" value="Modifier">
+			<a href="${pageContext.request.contextPath}/modifier">Modifier</a>
 		</form>
 	</div>
-
-
-
 
 </body>
 </html>

@@ -3,6 +3,7 @@ package fr.eni.encheres.dal.jdbc;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import fr.eni.encheres.bo.Adresse;
 import fr.eni.encheres.bo.Utilisateur;
@@ -15,7 +16,13 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	private final String INSERT_ADRESSE = "INSERT INTO ADRESSES (rue, code_postal, ville, no_utilisateur) VALUES (?,?,?,?);";
 	private final String SELECT_BY_EMAIL = "SELECT u.no_utilisateur, no_adresse, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur FROM UTILISATEURS u JOIN ADRESSES a ON u.no_utilisateur = a.no_utilisateur WHERE email = ?;";
 	private final String SELECT_BY_PSEUDO = "SELECT u.no_utilisateur, no_adresse, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur FROM UTILISATEURS u JOIN ADRESSES a ON u.no_utilisateur = a.no_utilisateur WHERE pseudo = ?;";
-
+	private final String UPDATE_UTILISATEUR ="UPDATE UTILISATEURS SET pseudo=?,nom=?, prenom=?,email=?, telephone=?,mot_de_passe=? WHERE no_utilisateur =?;";
+	private final String UPDATE_ADRESSE ="UPDATE ADRESSES SET rue=?,code_postal=?,ville=? WHERE no_utilisateur=?;";
+	
+	private final String DELETE_ADRESSES ="DELETE FROM ADRESSES WHERE noUtilisateur=?;";
+	private final String DELETE_UTILISATEURS="DELETE FROM UTILISATEURS WHERE noUtilisateur=?;";
+	
+	
 	private Utilisateur getUtilisateurByLogin(String login, String requete) {
 		Utilisateur utilisateur = null;
 		try (Connection cnx = ConnectionProvider.getConnection();
@@ -93,5 +100,48 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		}
 		return utilisateur;
 	}
+	@Override
+	public Utilisateur modifierUtilisateur (Utilisateur utilisateur) {
+		  try(	Connection cnx = ConnectionProvider.getConnection();
+			PreparedStatement pstmt = cnx.prepareStatement(UPDATE_UTILISATEUR)){
+			  pstmt.setString(1, utilisateur.getPseudo());
+				pstmt.setString(2, utilisateur.getNom());
+				pstmt.setString(3, utilisateur.getPrenom());
+				pstmt.setString(4, utilisateur.getEmail());
+				pstmt.setString(5, utilisateur.getTelephone());
+				pstmt.setString(6, utilisateur.getMotDePasse());
+			    pstmt.setInt(7,utilisateur.getNoUtilisateur());
+			    pstmt.executeUpdate();
+			    try(PreparedStatement pstmt2 = cnx.prepareStatement(UPDATE_ADRESSE)) {
+			    	pstmt2.setString(1, utilisateur.getAdresse().getRue());
+					pstmt2.setString(2, utilisateur.getAdresse().getCodePostal());
+					pstmt2.setString(3, utilisateur.getAdresse().getVille());
+					pstmt2.setInt(4, utilisateur.getAdresse().getNoUtilisateur());
+					pstmt2.executeUpdate();		    
+			    }
+			  
+		  } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return utilisateur;
+		}
 
+	@Override
+	public void supprimerUtilisateur (Utilisateur utilisateur) {
+		try(	Connection cnx = ConnectionProvider.getConnection();
+				PreparedStatement pstmt = cnx.prepareStatement(DELETE_ADRESSES)){
+			pstmt.setInt(1, utilisateur.getAdresse().getNoUtilisateur());
+			pstmt.executeUpdate();
+			try(PreparedStatement pstmt2 = cnx.prepareStatement(DELETE_UTILISATEURS)){
+				pstmt2.setInt(1, utilisateur.getNoUtilisateur());
+				pstmt2.executeUpdate();
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
