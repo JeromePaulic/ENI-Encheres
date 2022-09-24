@@ -69,5 +69,8 @@ public abstract class CodesResultatBLL {
 	 * Echec maj compte : le mot de passe est incorrect
 	 */
 	public static final int ERREUR_MDP = 20015;
-	
+	/**
+	 * Echec maj compte : le mot de passe est incorrect
+	 */
+	public static final int EMAIL_NON_VALIDE = 20016;
 }

@@ -118,7 +118,7 @@ public class Utilisateur {
 	
 	@Override
 	public String toString() {
-		return String.format("Utilisateur : pseudo=%s%n, nom=%s%n, prenom=%s%n, email=%s%n, telephone=%s%n, motDePasse=%s%n, credit=%d%n, rue=%s%n, cp=%s%n, ville=%s%n", 
+		return String.format("Utilisateur : pseudo=%s%n nom=%s%n prenom=%s%n email=%s%n telephone=%s%n motDePasse=%s%n credit=%d%n rue=%s%n cp=%s%n ville=%s%n", 
 				pseudo, nom, prenom, email, telephone, motDePasse, credit, adresse.getRue(), adresse.getCodePostal(), adresse.getVille());
 	}
 }

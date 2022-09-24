@@ -67,7 +67,7 @@
 				<input type="password" name="confirmationMotDePasse" required>
 			</label>
 			<input type="submit" value="Créer">
-			<a href="${pageContext.request.contextPath}/">Annuler</a>
+			<a href="${pageContext.request.contextPath}/accueil">Annuler</a>
 		</form>
 	</main>
 </body>

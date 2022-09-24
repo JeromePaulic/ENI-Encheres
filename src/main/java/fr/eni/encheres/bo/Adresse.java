@@ -3,41 +3,63 @@ package fr.eni.encheres.bo;
 public class Adresse {
 
 	private Integer noAdresse;
-	private Integer noUtilisateur;
+	private Utilisateur utilisateur;
 	private String rue;
 	private String codePostal;
 	private String ville;
 	
-	public Adresse(Integer noAdresse, Integer noUtilisateur, String rue, String codePostal, String ville) {
+	public Adresse(Integer noAdresse, Utilisateur utilisateur, String rue, String codePostal, String ville) {
 		this.noAdresse = noAdresse;
-		this.noUtilisateur = noUtilisateur;
+		this.utilisateur = utilisateur;
 		this.rue = rue;
 		this.codePostal = codePostal;
 		this.ville = ville;
 	}
 	
-	public Adresse(Integer noUtilisateur, String rue, String codePostal, String ville) {
-		this(null, noUtilisateur, rue, codePostal, ville);
+	public Adresse(Utilisateur utilisateur, String rue, String codePostal, String ville) {
+		this(null, utilisateur, rue, codePostal, ville);
 	}
 	
 	public Adresse(String rue, String codePostal, String ville) {
 		this(null, null, rue, codePostal, ville);
 	}
 
-	public int getNoAdresse() {
+	@Override
+	public String toString() {
+		int noUtilisateur = utilisateur == null ? -1 : utilisateur.getNoUtilisateur();
+		return String.format("Adresse noAdresse=%d, noUtilisateur=%d, rue=%s, cp=%s, ville=%s%n", noAdresse, noUtilisateur, rue, codePostal, ville);
+	}
+	
+	public String formatted() {
+		return String.format("%s %s %s", rue, codePostal, ville);
+	}
+	
+	public boolean equals(Adresse adresse) {
+		if (
+//			utilisateur.getNoUtilisateur() != adresse.getUtilisateur().getNoUtilisateur() ||
+			!this.rue.equals(adresse.getRue()) ||
+			!this.codePostal.equals(adresse.getCodePostal()) ||
+			!this.ville.equals(adresse.getVille())
+		) {
+			return false;
+		}
+		return true;
+	}
+
+	public Integer getNoAdresse() {
 		return noAdresse;
 	}
 
-	public void setNoAdresse(int noAdresse) {
+	public void setNoAdresse(Integer noAdresse) {
 		this.noAdresse = noAdresse;
 	}
 
-	public Integer getNoUtilisateur() {
-		return noUtilisateur;
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
 	}
 
-	public void setNoUtilisateur(int noUtilisateur) {
-		this.noUtilisateur = noUtilisateur;
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
 	}
 
 	public String getRue() {
@@ -62,22 +84,5 @@ public class Adresse {
 
 	public void setVille(String ville) {
 		this.ville = ville;
-	}
-	
-	@Override
-	public String toString() {
-		return String.format("Adresse noUtilisateur=%d, rue=%s, cp=%s, ville=%s%n", noUtilisateur, rue, codePostal, ville);
-	}
-	
-	public boolean equals(Adresse adresse) {
-		if (
-			this.noUtilisateur != adresse.getNoUtilisateur() ||
-			!this.rue.equals(adresse.getRue()) ||
-			!this.codePostal.equals(adresse.getCodePostal()) ||
-			!this.ville.equals(adresse.getVille())
-		) {
-			return false;
-		}
-		return true;
 	}
 }

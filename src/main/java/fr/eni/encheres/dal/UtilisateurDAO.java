@@ -6,14 +6,11 @@ public interface UtilisateurDAO {
 	
 	Utilisateur getUtilisateurByEmail(String email);
 	
+	Utilisateur getUtilisateurByNo(int noUtilisateur);
+	
 	Utilisateur getUtilisateurByPseudo(String pseudo);
 	
 	Utilisateur insertUtilisateur(Utilisateur utilisateur);
-
+	
 	Utilisateur modifierUtilisateur(Utilisateur user);
-
-	void supprimerUtilisateur(Utilisateur utilisateur);
-
-	
-	
 }

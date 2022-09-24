@@ -1,45 +1,70 @@
 package fr.eni.encheres.bo;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Article {
 	
 	private Integer noArticle;
-	private Integer noAdresse;
+	private Adresse adresseRetrait;
 	private String nomArticle;
 	private String description;
 	private LocalDate dateDebutEncheres;
 	private LocalDate dateFinEncheres;
 	private Integer prixInitial;
 	private Integer prixVente;
-	private int noVendeur;
-	private int noCategorie;
+	private Utilisateur vendeur;
+	private Categorie categorie;
 	
-	public Article(Integer noArticle, Integer noAdresse, String nomArticle, String description, LocalDate dateDebutEncheres,
-			LocalDate dateFinEncheres, Integer prixInitial, Integer prixVente, int noVendeur, int noCategorie) {
+	public Article(Integer noArticle, Adresse adresseRetrait, String nomArticle, String description,
+			LocalDate dateDebutEncheres, LocalDate dateFinEncheres, Integer prixInitial, Integer prixVente,
+			Utilisateur vendeur, Categorie categorie) {
 		this.noArticle = noArticle;
-		this.noAdresse = noAdresse;
+		this.adresseRetrait = adresseRetrait;
 		this.nomArticle = nomArticle;
 		this.description = description;
 		this.dateDebutEncheres = dateDebutEncheres;
 		this.dateFinEncheres = dateFinEncheres;
 		this.prixInitial = prixInitial;
 		this.prixVente = prixVente;
-		this.noVendeur = noVendeur;
-		this.noCategorie = noCategorie;
+		this.vendeur = vendeur;
+		this.categorie = categorie;
 	}
 	
-	public Article(Integer noAdresse, String nomArticle, String description, LocalDate dateDebutEncheres,
-			LocalDate dateFinEncheres, Integer prixInitial, Integer prixVente, int noVendeur, int noCategorie) {
-		this(null, noAdresse, nomArticle, description, dateDebutEncheres, dateFinEncheres, prixInitial, prixVente, noVendeur, noCategorie);
+	public Article(Adresse adresseRetrait, String nomArticle, String description,
+			LocalDate dateDebutEncheres, LocalDate dateFinEncheres, Integer prixInitial, Integer prixVente,
+			Utilisateur vendeur, Categorie categorie) {
+		this(null, adresseRetrait, nomArticle, description, dateDebutEncheres, dateFinEncheres, prixInitial, prixVente, vendeur, categorie);
+	}
+	
+	public boolean estModifiable() {
+		return dateDebutEncheres.compareTo(LocalDate.now()) > 0;
+	}
+	
+	public String getFormattedDateDebutEncheres() {
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		return dateDebutEncheres.format(dtf);
+	}
+	
+	public String getFormattedDateFinEncheres() {
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		return dateFinEncheres.format(dtf);
 	}
 
-	public int getNoArticle() {
+	public Integer getNoArticle() {
 		return noArticle;
 	}
 
-	public void setNoArticle(int noArticle) {
+	public void setNoArticle(Integer noArticle) {
 		this.noArticle = noArticle;
+	}
+
+	public Adresse getAdresseRetrait() {
+		return adresseRetrait;
+	}
+
+	public void setAdresseRetrait(Adresse adresseRetrait) {
+		this.adresseRetrait = adresseRetrait;
 	}
 
 	public String getNomArticle() {
@@ -74,56 +99,36 @@ public class Article {
 		this.dateFinEncheres = dateFinEncheres;
 	}
 
-	public int getPrixInitial() {
+	public Integer getPrixInitial() {
 		return prixInitial;
-	}
-
-	public void setPrixInitial(int prixInitial) {
-		this.prixInitial = prixInitial;
-	}
-
-	public int getPrixVente() {
-		return prixVente;
-	}
-
-	public void setPrixVente(int prixVente) {
-		this.prixVente = prixVente;
-	}
-
-	public int getNoCategorie() {
-		return noCategorie;
-	}
-
-	public void setNoCategorie(int noCategorie) {
-		this.noCategorie = noCategorie;
-	}
-
-	public Integer getNoAdresse() {
-		return noAdresse;
-	}
-
-	public void setNoAdresse(Integer noAdresse) {
-		this.noAdresse = noAdresse;
-	}
-
-	public void setNoArticle(Integer noArticle) {
-		this.noArticle = noArticle;
 	}
 
 	public void setPrixInitial(Integer prixInitial) {
 		this.prixInitial = prixInitial;
 	}
 
+	public Integer getPrixVente() {
+		return prixVente;
+	}
+
 	public void setPrixVente(Integer prixVente) {
 		this.prixVente = prixVente;
 	}
 
-	public int getNoVendeur() {
-		return noVendeur;
+	public Utilisateur getVendeur() {
+		return vendeur;
 	}
 
-	public void setNoVendeur(int noVendeur) {
-		this.noVendeur = noVendeur;
+	public void setVendeur(Utilisateur vendeur) {
+		this.vendeur = vendeur;
+	}
+
+	public Categorie getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
 	}
 	
 }

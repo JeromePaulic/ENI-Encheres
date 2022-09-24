@@ -49,7 +49,11 @@ public class UtilisateurManager {
 		return utilisateur;
 	}
 	
-	private boolean validerUtilisateur(Utilisateur utilisateur, String confirmationMotDePasse) throws BusinessException {
+	public Utilisateur getUtilisateur(int noUtilisateur) {
+		return utilisateurDAO.getUtilisateurByNo(noUtilisateur);
+	}
+	
+	private void validerUtilisateur(Utilisateur utilisateur, String confirmationMotDePasse) throws BusinessException {
 		BusinessException be = new BusinessException();
 		if (emailDejaExistant(utilisateur.getEmail())) {
 			be.ajouterErreur(CodesResultatBLL.EMAIL_DEJA_EXISTANT);
@@ -69,14 +73,15 @@ public class UtilisateurManager {
 		if (!utilisateur.getPrenom().matches("[A-Za-z]+")) {
 			be.ajouterErreur(CodesResultatBLL.PRENOM_NON_VALIDE);
 		}
+		if (!utilisateur.getEmail().matches("[\\w]+@[\\w]+\\.[A-Za-z]+")) {
+			be.ajouterErreur(CodesResultatBLL.EMAIL_NON_VALIDE);
+		}
 		if (!utilisateur.getAdresse().getCodePostal().matches("\\d{5}")) {
 			be.ajouterErreur(CodesResultatBLL.CP_NON_VALIDE);
 		}
-		
 		if (be.hasErreurs()) {
 			throw be;
 		}
-		return true;
 	}
 	
 	private boolean emailDejaExistant(String email) {
@@ -86,10 +91,7 @@ public class UtilisateurManager {
 	private boolean pseudoDejaExistant(String pseudo) {
 		return utilisateurDAO.getUtilisateurByPseudo(pseudo) != null;
 	}
-
 	
-
-
 	public Utilisateur majProfil(Utilisateur user, String confirmationMotDePasse,
 			Utilisateur utilisateurSession, String motDePasseNew) throws BusinessException{
 		
@@ -102,7 +104,7 @@ public class UtilisateurManager {
 		return user;
 	}
 
-	private boolean validerMajUtilisateur(Utilisateur utilisateur, String confirmationMotDePasse,Utilisateur utilisateurSession, String motDePasseNew) throws BusinessException {
+	private void validerMajUtilisateur(Utilisateur utilisateur, String confirmationMotDePasse,Utilisateur utilisateurSession, String motDePasseNew) throws BusinessException {
 		BusinessException be = new BusinessException();
 		
 		if(!utilisateur.getMotDePasse().equals(utilisateurSession.getMotDePasse())&& motDePasseNew.isEmpty()) {
@@ -119,7 +121,6 @@ public class UtilisateurManager {
 				be.ajouterErreur(CodesResultatBLL.EMAIL_DEJA_EXISTANT);
 			}
 		}
-		
 		if(!confirmationMotDePasse.isEmpty()&&!utilisateur.getMotDePasse().equals(confirmationMotDePasse)) {
 			be.ajouterErreur(CodesResultatBLL.ERREUR_CONFIRMATION_MDP);
 		}
@@ -133,28 +134,14 @@ public class UtilisateurManager {
 		if (!utilisateur.getPrenom().matches("[A-Za-z]+")) {
 			be.ajouterErreur(CodesResultatBLL.PRENOM_NON_VALIDE);
 		}
+		if (!utilisateur.getEmail().matches("[\\w]+@[\\w]+\\.[A-Za-z]+")) {
+			be.ajouterErreur(CodesResultatBLL.EMAIL_NON_VALIDE);
+		}
 		if (!utilisateur.getAdresse().getCodePostal().matches("\\d{5}")) {
 			be.ajouterErreur(CodesResultatBLL.CP_NON_VALIDE);
 		}
 		if (be.hasErreurs()) {
 			throw be;
 		}
-		
-		
-		return true;
 	}
-	
-	
-
-	public void supProfil(Utilisateur userSup)throws BusinessException {
-		
-		
-	}
-	
-	
-
-
-
-
-
 }

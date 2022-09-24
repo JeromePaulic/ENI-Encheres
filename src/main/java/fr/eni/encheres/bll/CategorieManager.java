@@ -22,6 +22,10 @@ public class CategorieManager {
 		return instance;
 	}
 	
+	public Categorie getCategorie(int id) {
+		return categorieDAO.getById(id);
+	}
+	
 	public List<Categorie> selectAll() {
 		return categorieDAO.selectAll();
 	}

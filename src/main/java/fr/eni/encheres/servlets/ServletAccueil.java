@@ -9,8 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.encheres.bll.ArticleManager;
 import fr.eni.encheres.bll.CategorieManager;
-import fr.eni.encheres.bo.Categorie;
+import fr.eni.encheres.bo.Article;
 
 @WebServlet("/accueil")
 public class ServletAccueil extends HttpServlet {
@@ -21,8 +22,8 @@ public class ServletAccueil extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Categorie> categories = CategorieManager.getInstance().selectAll();
-		request.setAttribute("categories", categories);
+		request.setAttribute("articles", ArticleManager.getInstance().getArticles());
+		request.setAttribute("categories", CategorieManager.getInstance().selectAll());
 		request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
 	}
 
@@ -30,7 +31,13 @@ public class ServletAccueil extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		String recherche = request.getParameter("recherche");
+		String categorie = request.getParameter("categorie");
+		Integer noCategorie = categorie.isEmpty() ? null : Integer.parseInt(request.getParameter("categorie"));
+		List<Article> articles = ArticleManager.getInstance().getArticlesFiltres(recherche, noCategorie);
+		request.setAttribute("articles", articles);
+		request.setAttribute("categories", CategorieManager.getInstance().selectAll());
+		request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
 	}
 
 }

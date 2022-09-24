@@ -44,8 +44,6 @@ public class ServletVente extends HttpServlet {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("utilisateur");
 		
-		int noUtilisateur = utilisateur.getNoUtilisateur();
-		int noAdresse = utilisateur.getAdresse().getNoAdresse();
 		String nomArticle = request.getParameter("nomArticle").trim();
 		String description = request.getParameter("description").trim();
 		int noCategorie = Integer.parseInt(request.getParameter("noCategorie"));
@@ -56,17 +54,18 @@ public class ServletVente extends HttpServlet {
 		String rue = request.getParameter("rue").trim();
 		String codePostal = request.getParameter("codePostal").trim();
 		String ville = request.getParameter("ville").trim();
-		Adresse adresseRetrait = new Adresse(noUtilisateur, rue, codePostal, ville);
-		
+		Adresse adresse = new Adresse(utilisateur.getAdresse().getNoAdresse(), utilisateur, rue, codePostal, ville);
+		Adresse adresseRetrait = null;
 		try {
-			if (!adresseRetrait.equals(utilisateur.getAdresse())) {
-				Adresse adresse = AdresseManager.getInstance().creerAdresse(adresseRetrait);
-				noAdresse = adresse.getNoAdresse();
+			if (!adresse.equals(utilisateur.getAdresse())) {
+				adresseRetrait = AdresseManager.getInstance().creerAdresse(adresse);
 			}
 			
-			Article article = new Article(noAdresse, nomArticle, description, dateDebutEncheres, dateFinEncheres, prixInitial, null, noUtilisateur, noCategorie);
+			Categorie categorie = CategorieManager.getInstance().getCategorie(noCategorie);
+			Article article = new Article(
+					adresseRetrait, nomArticle, description, dateDebutEncheres, 
+					dateFinEncheres, prixInitial, null, utilisateur, categorie);
 			ArticleManager.getInstance().creerArticle(article);
-			
 			response.sendRedirect("accueil");
 		} catch (BusinessException be) {
 			request.setAttribute("listeCodesErreur", be.getListeCodesErreur());

@@ -17,25 +17,14 @@ import fr.eni.encheres.bo.Utilisateur;
  */
 @WebServlet("/modifier")
 public class ServletModifierProfil extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ServletModifierProfil() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		request.getRequestDispatcher("/WEB-INF/jsp/modifierProfil.jsp").forward(request, response);
-		
-		
-		
 	}
 
 	/**
@@ -43,7 +32,7 @@ public class ServletModifierProfil extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		Utilisateur utilisateurSession=(Utilisateur) request.getSession().getAttribute("utilisateur");
+		Utilisateur utilisateurSession = (Utilisateur) request.getSession().getAttribute("utilisateur");
 		int noUtilisateur= utilisateurSession.getNoUtilisateur();
 		String pseudo = request.getParameter("pseudo");
 		String nom = request.getParameter("nom");
@@ -58,23 +47,15 @@ public class ServletModifierProfil extends HttpServlet {
 		String confirmationMotDePasse = request.getParameter("confirmationMotDePasse");
 		int credit = utilisateurSession.getCredit();
 		
-		
-		Adresse adresse = new Adresse(noUtilisateur,rue, codePostal, ville);
-		Utilisateur user = new Utilisateur(noUtilisateur,pseudo,nom,prenom,email,telephone,motDePasse,credit,false,adresse );
+		Adresse adresse = new Adresse(utilisateurSession, rue, codePostal, ville);
+		Utilisateur user = new Utilisateur(noUtilisateur, pseudo, nom, prenom, email, telephone, motDePasse, credit, false, adresse);
 		
 		try {
-			
-			user = UtilisateurManager.getInstance().majProfil(user ,confirmationMotDePasse,utilisateurSession,motDePasseNew);
+			user = UtilisateurManager.getInstance().majProfil(user, confirmationMotDePasse, utilisateurSession, motDePasseNew);
 			response.sendRedirect("accueil");
-	
-			
 		} catch (BusinessException e) {
 			request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
 			request.getRequestDispatcher("/WEB-INF/jsp/modifierProfil.jsp").forward(request, response);
 		}
-		
-		
-		
 	}
-
 }

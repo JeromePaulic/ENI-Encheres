@@ -1,6 +1,7 @@
 package fr.eni.encheres.bll;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import fr.eni.encheres.BusinessException;
 import fr.eni.encheres.bo.Article;
@@ -26,6 +27,21 @@ public class ArticleManager {
 	public void creerArticle(Article article) throws BusinessException {
 		validerArticle(article);
 		articleDAO.insertArticle(article);
+	}
+	
+	public Article getArticleById(int id) {
+		return articleDAO.getArticleById(id);
+	}
+	
+	public List<Article> getArticles() {
+		return articleDAO.selectAll();
+	}
+	
+	public List<Article> getArticlesFiltres(String recherche, Integer noCategorie) {
+		if (recherche == null && noCategorie == null) {
+			return getArticles();
+		}
+		return articleDAO.getArticlesFiltres(recherche.trim(), noCategorie);
 	}
 	
 	private void validerArticle(Article article) throws BusinessException {
