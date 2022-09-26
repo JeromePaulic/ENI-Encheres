@@ -55,36 +55,76 @@
 			
 			<c:if test="${!empty utilisateur}">
 	      		<label>
-					<input type="radio" id="achat" name="transaction" value="achat" checked>
+					<input type="radio" id="achat" name="transaction" value="achat" 
+						<c:choose>
+							<c:when test="${empty transaction}">class="checked"</c:when>
+							<c:when test="${!empty transaction && transaction.equals('achat')}">class="checked"</c:when>
+							<c:otherwise>class="unchecked"</c:otherwise>
+						</c:choose>
+					>
 	      			Achats
 	      		</label>
 				<label>
-				 <input type="checkbox" id="ouvertes" class="achats" name="achats" value="ouvertes" checked>
+					 <input type="checkbox" id="ouvertes" name="achats" value="ouvertes" 
+					 	<c:choose>
+							<c:when test="${!empty filtresAchats && filtresAchats.contains('ouvertes')}">class="achats checked"</c:when>
+							<c:otherwise>class="achats unchecked"</c:otherwise>
+						</c:choose>
+					 >
 					enchères ouvertes
 				</label>
 				<label>
-				 <input type="checkbox" id="encours" class="achats" name="achats" value="encours">
+				 <input type="checkbox" id="encours" name="achats" value="encours"
+				 	<c:choose>
+						<c:when test="${!empty filtresAchats && filtresAchats.contains('encours')}">class="achats checked"</c:when>
+						<c:otherwise>class="achats unchecked"</c:otherwise>
+					</c:choose>
+				 >
 					mes enchères en cours
 				</label>
 				<label>
-				 <input type="checkbox" id="remportees" class="achats" name="achats" value="remportees">
+				 <input type="checkbox" id="remportees" name="achats" value="remportees"
+				 	<c:choose>
+						<c:when test="${!empty filtresAchats && filtresAchats.contains('remportees')}">class="achats checked"</c:when>
+						<c:otherwise>class="achats unchecked"</c:otherwise>
+					</c:choose>
+				 >
 					mes enchères remportées
 				</label>
-			      
 				<label for="vente">
-					<input type="radio" id="vente" name="transaction" value="vente">
+					<input type="radio" id="vente" name="transaction" value="vente"
+						<c:choose>
+							<c:when test="${!empty transaction && transaction.equals('vente')}">class="checked"</c:when>
+							<c:otherwise>class="unchecked"</c:otherwise>
+						</c:choose>
+					>
 					Mes Ventes
 				</label>
 				<label for="encours">
-					<input type="checkbox" id="encours" class="ventes" name="ventes" value="encours">
+					<input type="checkbox" id="encours" name="ventes" value="encours"
+						<c:choose>
+							<c:when test="${!empty filtresVentes && filtresVentes.contains('encours')}">class="ventes checked"</c:when>
+							<c:otherwise>class="ventes unchecked"</c:otherwise>
+						</c:choose>
+					>
 					mes ventes en cours
 				</label>
 				<label for="nondebute">
-					<input type="checkbox" id="nondebute" class="ventes" name="ventes" value="nondebute">
+					<input type="checkbox" id="nondebutees" name="ventes" value="nondebutees"
+						<c:choose>
+							<c:when test="${!empty filtresVentes && filtresVentes.contains('nondebute')}">class="ventes checked"</c:when>
+							<c:otherwise>class="ventes unchecked"</c:otherwise>
+						</c:choose>
+					>
 					ventes non débutées
 				</label>
 				<label for="terminees">
-					<input type="checkbox" id="terminees" class="ventes" name="ventes" value="terminees">
+					<input type="checkbox" id="terminees" name="ventes" value="terminees"
+						<c:choose>
+							<c:when test="${!empty filtresVentes && filtresVentes.contains('terminees')}">class="ventes checked"</c:when>
+							<c:otherwise>class="ventes unchecked"</c:otherwise>
+						</c:choose>
+					>
 					ventes terminées
 				</label>
 			</c:if>
@@ -107,6 +147,7 @@
 						</c:choose>
 					</h3>
 					<p>Prix : ${article.getPrixInitial()} points</p>
+					<p>Début de l'enchère : ${article.getFormattedDateDebutEncheres()}</p>
 					<p>Fin de l'enchère : ${article.getFormattedDateFinEncheres()}</p>
 					<p>
 						<c:choose>

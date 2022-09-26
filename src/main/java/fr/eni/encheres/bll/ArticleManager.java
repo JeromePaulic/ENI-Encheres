@@ -29,6 +29,14 @@ public class ArticleManager {
 		articleDAO.insertArticle(article);
 	}
 	
+	public List<Article> getAchats(int noUtilisateur) {
+		return articleDAO.getAchats(noUtilisateur); 
+	}
+	
+	public List<Article> getAchatsOuverts(int noUtilisateur) {
+		return articleDAO.getArticlesFiltres(noUtilisateur, null, null, "achat", new String[]{"ouvertes"}, null);
+	}
+
 	public Article getArticleById(int id) {
 		return articleDAO.getArticleById(id);
 	}
@@ -37,11 +45,16 @@ public class ArticleManager {
 		return articleDAO.selectAll();
 	}
 	
-	public List<Article> getArticlesFiltres(String recherche, Integer noCategorie) {
-		if (recherche == null && noCategorie == null) {
+	public List<Article> getArticlesFiltres(Integer noUtilisateur, String recherche, Integer noCategorie, 
+			String transaction, String[] filtresAchats, String[] filtresVentes) {
+		if (recherche == null && noCategorie == null && transaction == null) {
 			return getArticles();
 		}
-		return articleDAO.getArticlesFiltres(recherche.trim(), noCategorie);
+		return articleDAO.getArticlesFiltres(noUtilisateur, recherche.trim(), noCategorie, transaction, filtresAchats, filtresVentes);
+	}
+	
+	public List<Article> getVentes(int noUtilisateur) {
+		return articleDAO.getVentes(noUtilisateur); 
 	}
 	
 	private void validerArticle(Article article) throws BusinessException {
