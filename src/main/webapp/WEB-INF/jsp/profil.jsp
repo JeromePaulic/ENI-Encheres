@@ -8,27 +8,31 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="${pageContext.request.contextPath}/css/menu.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
 <title>Profil</title>
 </head>
 <body>
 
 
  <header>
-		<h1> <h1>Profil</h1></h1>
-		<nav class="menu">
+		<a href="accueil"><img class="logo" src="img/logo.png" alt="logo"></a>
+ 
+		<nav>
+		<label for="toggle">☰</label>
+    	<input type="checkbox" id="toggle">
+		<div class="main_pages">
 			<a href="${pageContext.request.contextPath}/enchere">Enchère</a> 
 			<a href ="${pageContext.request.contextPath}/vente">Vendre un Article</a>
 			<a href ="${pageContext.request.contextPath}/profil">Mon Profil</a>
 			<a href ="${pageContext.request.contextPath}/deconnexion">Déconnexion</a>
-			
+			</div>
 		</nav>
 	</header>
  
+ <h1>Profil</h1>
  
  
- 
-	<div>
+	<div><center>
 		<form method="POST">
 			<div>
 				<p><span>Pseudo : </span><span>${utilisateur.getPseudo()}</span></p>
@@ -54,9 +58,16 @@
 			<div>
 				<p><span>Ville : </span><span>${utilisateur.getAdresse().getVille()}</span></p>
 			</div>
-			<a href="${pageContext.request.contextPath}/modifier">Modifier</a>
-		</form>
+			<a class="button" href="${pageContext.request.contextPath}/modifier">Modifier</a>
+		</form></center>
 	</div>
+	
+			
+		 <footer>
+
+<p>Développé par Elodie, Quentin, Jérôme - ENI Ecole</p>
+
+</footer>
 
 </body>
 </html>
