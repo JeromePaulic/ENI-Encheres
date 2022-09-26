@@ -8,36 +8,14 @@
 	<meta charset="UTF-8">
 	<title>Accueil enchères</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/base.css">
+	<link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
 </head>
 <body>
 
 	<header>
-		<h1>ENI-Enchères</h1>
-		<nav>
-			<c:choose> 
-				<c:when test="${empty utilisateur}">
-					<a href="${pageContext.request.contextPath}/connexion">S'inscrire- Se connecter</a> 
-				</c:when>
-		 		<c:otherwise>
-		 			<ul>
-		 				<li>
-		 					<a href="${pageContext.request.contextPath}/enchere">Enchère</a> 
-		 				</li>
-		 				<li>
-							<a href ="${pageContext.request.contextPath}/vente">Vendre un Article</a>
-		 				</li>
-		 				<li>
-							<a href ="${pageContext.request.contextPath}/profil">Mon Profil</a>
-		 				</li>
-		 				<li>
-							<a href ="${pageContext.request.contextPath}/deconnexion">Déconnexion</a>
-		 				</li>
-		 			</ul>
-		 		</c:otherwise>
-			</c:choose> 
-		</nav>
+		<%@ include file="../include/header.jsp" %>
 	</header>
-
+<h1>Accueil</h1>
 	<main>
 		<h2>Liste des enchères</h2>
 		<form action="${pageContext.request.contextPath}/accueil" method="post">
@@ -168,7 +146,7 @@
 			<p>Aucun article mis aux enchères n'a été trouvé</p>
 		</c:if>
 	</main>
-	
+	<%@ include file="../include/footer.html" %>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/accueil.js"></script>
 </body>
 </html>

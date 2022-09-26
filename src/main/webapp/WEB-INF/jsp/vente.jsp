@@ -6,13 +6,15 @@
 <html>
 <head>
 	<meta charset="UTF-8">
+	<link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
 	<title>Nouvelle vente</title>
 </head>
 <body>
 	<header>
-		<h1>ENI-Enchères</h1>
-		<h2>Nouvelle vente</h2>
+		<%@ include file="../include/header.jsp" %>
+		
 	</header>
+	<h1>Nouvelle vente</h1>
 	<main>
 		<c:if test="${!empty listeCodesErreur}">
 			<div class="alert alert-danger" role="alert">
@@ -72,5 +74,6 @@
 			<a href="${pageContext.request.contextPath}/">Annuler</a>
 		</form>
 	</main>
+	<%@ include file="../include/footer.html" %>	
 </body>
 </html>

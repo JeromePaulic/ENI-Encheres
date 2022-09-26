@@ -15,18 +15,7 @@
 
 
  <header>
-		<a href="accueil"><img class="logo" src="img/logo.png" alt="logo"></a>
- 
-		<nav>
-		<label for="toggle">☰</label>
-    	<input type="checkbox" id="toggle">
-		<div class="main_pages">
-			<a href="${pageContext.request.contextPath}/enchere">Enchère</a> 
-			<a href ="${pageContext.request.contextPath}/vente">Vendre un Article</a>
-			<a href ="${pageContext.request.contextPath}/profil?id=${sessionScope.utilisateur.noUtilisateur}">Mon Profil</a>
-			<a href ="${pageContext.request.contextPath}/deconnexion">Déconnexion</a>
-			</div>
-		</nav>
+		<%@ include file="../include/header.jsp" %>
 	</header>
  
  <h1>Profil</h1>
@@ -62,14 +51,7 @@
 			<a class="button" href="${pageContext.request.contextPath}/modifier">Modifier</a>
 			</c:if>
 		</form>
-	</div>
-	
-			
-		 <footer>
-
-<p>Développé par Elodie, Quentin, Jérôme - ENI Ecole</p>
-
-</footer>
-
+	</div>		
+<%@ include file="../include/footer.html" %>
 </body>
 </html>
