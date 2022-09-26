@@ -23,7 +23,7 @@
 		<div class="main_pages">
 			<a href="${pageContext.request.contextPath}/enchere">Enchère</a> 
 			<a href ="${pageContext.request.contextPath}/vente">Vendre un Article</a>
-			<a href ="${pageContext.request.contextPath}/profil">Mon Profil</a>
+			<a href ="${pageContext.request.contextPath}/profil?id=${sessionScope.utilisateur.noUtilisateur}">Mon Profil</a>
 			<a href ="${pageContext.request.contextPath}/deconnexion">Déconnexion</a>
 			</div>
 		</nav>
@@ -32,7 +32,7 @@
  <h1>Profil</h1>
  
  
-	<div><center>
+	<div>
 		<form method="POST">
 			<div>
 				<p><span>Pseudo : </span><span>${utilisateur.getPseudo()}</span></p>
@@ -58,8 +58,10 @@
 			<div>
 				<p><span>Ville : </span><span>${utilisateur.getAdresse().getVille()}</span></p>
 			</div>
+			<c:if test= "${requestScope.utilisateur.noUtilisateur==sessionScope.utilisateur.noUtilisateur }"> 
 			<a class="button" href="${pageContext.request.contextPath}/modifier">Modifier</a>
-		</form></center>
+			</c:if>
+		</form>
 	</div>
 	
 			
