@@ -13,4 +13,6 @@ public interface UtilisateurDAO {
 	Utilisateur insertUtilisateur(Utilisateur utilisateur);
 	
 	Utilisateur modifierUtilisateur(Utilisateur user);
+
+	void supprimerUtilisateur(Utilisateur utilisateur);
 }

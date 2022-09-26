@@ -25,6 +25,7 @@
 			  </ul>
 			</div>
 		</c:if>
+		
 		<form action="${pageContext.request.contextPath}/modifier" method="post">
 			<label>
 				Pseudo :
@@ -75,7 +76,9 @@
 				<p><span>Crédit: </span><span>${utilisateur.getCredit()}</span></p>
 			</div>
 			<input type="submit" value="Enregister">
-			<input type="submit" value="Supprimer mon compte"<a href="${pageContext.request.contextPath}/suppression"></a>>
+			
+	
+		<input type="submit" name="supprimermoncompte" value="Supprimer mon compte">
 		</form>
 	</main>
 </body>

@@ -51,8 +51,19 @@ public class ServletModifierProfil extends HttpServlet {
 		Utilisateur user = new Utilisateur(noUtilisateur, pseudo, nom, prenom, email, telephone, motDePasse, credit, false, adresse);
 		
 		try {
-			user = UtilisateurManager.getInstance().majProfil(user, confirmationMotDePasse, utilisateurSession, motDePasseNew);
-			response.sendRedirect("accueil");
+			if (request.getParameter("supprimermoncompte") != null) {
+				
+				 UtilisateurManager.getInstance().supProfil(user, confirmationMotDePasse, utilisateurSession,
+							motDePasseNew);
+						request.getSession().setAttribute("utilisateur", null);
+						response.sendRedirect("accueil");
+						
+					}else {
+					user = UtilisateurManager.getInstance().majProfil(user, confirmationMotDePasse, utilisateurSession,
+							motDePasseNew);
+					request.getSession().setAttribute("utilisateur", user);
+					response.sendRedirect("accueil");
+					}
 		} catch (BusinessException e) {
 			request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
 			request.getRequestDispatcher("/WEB-INF/jsp/modifierProfil.jsp").forward(request, response);

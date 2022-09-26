@@ -144,4 +144,12 @@ public class UtilisateurManager {
 			throw be;
 		}
 	}
+	
+	public void supProfil(Utilisateur user, String confirmationMotDePasse, Utilisateur utilisateurSession,
+			String motDePasseNew) throws BusinessException {
+
+		validerMajUtilisateur(user, confirmationMotDePasse, utilisateurSession, motDePasseNew);
+		utilisateurDAO.supprimerUtilisateur(user);
+
+	}
 }

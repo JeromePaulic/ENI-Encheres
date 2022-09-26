@@ -20,6 +20,9 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	private final String SELECT_BY_PSEUDO = "SELECT u.no_utilisateur, no_adresse, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur FROM UTILISATEURS u JOIN ADRESSES a ON u.no_utilisateur = a.no_utilisateur WHERE pseudo = ?;";
 	private final String UPDATE_UTILISATEUR ="UPDATE UTILISATEURS SET pseudo=?,nom=?, prenom=?,email=?, telephone=?,mot_de_passe=? WHERE no_utilisateur =?;";
 	private final String UPDATE_ADRESSE ="UPDATE ADRESSES SET rue=?,code_postal=?,ville=? WHERE no_utilisateur=?;";
+	private final String DELETE_ADRESSES ="DELETE FROM ADRESSES WHERE no_utilisateur=?;";
+	private final String DELETE_UTILISATEURS="DELETE FROM UTILISATEURS WHERE no_utilisateur=?;";
+	
 	
 	@Override
 	public Utilisateur getUtilisateurByEmail(String email) {
@@ -158,4 +161,23 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		}
 		return utilisateur;
 	}
+	@Override
+	public  void supprimerUtilisateur (Utilisateur utilisateur) {
+		try(	Connection cnx = ConnectionProvider.getConnection();
+				PreparedStatement pstmt = cnx.prepareStatement(DELETE_ADRESSES)){
+			pstmt.setInt(1, utilisateur.getAdresse().getUtilisateur().getNoUtilisateur());
+			pstmt.executeUpdate();
+				try(PreparedStatement pstmt3 = cnx.prepareStatement(DELETE_UTILISATEURS)){
+					pstmt3.setInt(1, utilisateur.getNoUtilisateur());
+					pstmt3.executeUpdate();
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
 }
