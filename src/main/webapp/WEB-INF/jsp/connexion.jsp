@@ -2,17 +2,18 @@
     pageEncoding="UTF-8"%>
 <%@ page import="fr.eni.encheres.messages.LecteurMessage" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<title>Se connecter</title>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/base-styles.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/connexion.css">
 </head>
 <body>
-	<header>
-		<h1>ENI-Enchères</h1>
-	</header>
+	<jsp:include page="../include/header.jsp"></jsp:include>
+	
 	<main>
 		<c:if test="${!empty listeCodesErreur}">
 			<div class="alert alert-danger" role="alert">
@@ -25,24 +26,26 @@
 			</div>
 		</c:if>
 		<form action="${pageContext.request.contextPath}/connexion" method="post">
-			<label>
-				Identifiant : 
-				<input type="text" name="login" required>
-			</label>
-			<label>
-				Mot de passe : 
-				<input type="password" name="motDePasse" required>
-			</label>
-			<div>
-				<input type="submit" value="Connexion">
-				<label>
-					<input type="checkbox" name="sauvegarder">
-					Se souvenir de moi
-				</label>
-				<a href="">Mot de passe oublié</a>
-			</div>
+			<label for="login">Identifiant : </label>
+			<input type="text" id="login" name="login" required>
+			
+			<label for="motDePasse">Mot de passe : </label>
+			<input type="password" id="motDePasse" name="motDePasse" required>
+			
+				<input type="submit" class="btn" value="Connexion">
+				<div class="container">
+					<label>
+						<input type="checkbox" name="sauvegarder">
+						Se souvenir de moi
+					</label>
+					<a href="">Mot de passe oublié</a>
+				</div>
 		</form>
-		<a href="${pageContext.request.contextPath}/creationCompte">Créer un compte</a>
+		<a id="lien-creation-compte" class="btn" href="${pageContext.request.contextPath}/creationCompte">Créer un compte</a>
 	</main>
+	
+	<jsp:include page="../include/footer.jsp"></jsp:include>
+	
+	<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/responsiveNav.js"></script>
 </body>
 </html>

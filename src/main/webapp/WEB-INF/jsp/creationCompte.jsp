@@ -8,12 +8,11 @@
 	<meta charset="UTF-8">
 	<title>Créer un compte</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/base-styles.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/creationCompte.css">
 </head>
 <body>
-	<header>
-		<a href="accueil"><img class="logo" src="img/logo.png" alt="logo"></a>
-	</header>
+	<jsp:include page="../include/header.jsp"></jsp:include>
 	<main>
 		<h1>Créer un compte</h1>
 		<c:if test="${!empty listeCodesErreur}">
@@ -63,5 +62,9 @@
 			</div>
 		</form>
 	</main>
+	
+	<jsp:include page="../include/footer.jsp"></jsp:include>
+	
+	<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/responsiveNav.js"></script>
 </body>
 </html>

@@ -12,7 +12,9 @@ body {
 }
 
 .logo {
-	width: 4rem;
+	margin-top: .75rem;
+	margin-left: .75rem;
+	width: 3rem;
 }
 
 h1 {
@@ -45,4 +47,19 @@ label, input {
 	border: 1px solid white;
 	color: #eee;
 	cursor: pointer;
+}
+
+
+footer{
+    position: fixed;
+    background: #48435C;
+    height: auto;
+    width: 100vw;
+    padding-top: 0px;
+    color: #fff;
+    text-align: center;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-top: 0px;
 }
