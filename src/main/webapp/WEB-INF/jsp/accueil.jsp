@@ -13,7 +13,8 @@
 <body>
 
 	<%@ include file="../include/header.jsp" %>
-<h1>Accueil</h1>
+	
+	<h1>Accueil</h1>
 	<main>
 		<h2>Liste des enchères</h2>
 		<form action="${pageContext.request.contextPath}/accueil" method="post">
@@ -145,6 +146,7 @@
 		</c:if>
 	</main>
 	<%@ include file="../include/footer.jsp" %>
+	
 	<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/accueil.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/responsiveNav.js"></script>
 </body>

@@ -13,9 +13,10 @@
 	<title>Profil</title>
 </head>
 <body>
+
 	<%@ include file="../include/header.jsp" %>
+	
  	<h1>Profil</h1>
- 
 	<div>
 		<form method="POST">
 			<div>
@@ -47,7 +48,9 @@
 			</c:if>
 		</form>
 	</div>		
+	
 	<%@ include file="../include/footer.jsp" %>
+	
 	<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/responsiveNav.js"></script>
 </body>
 </html>

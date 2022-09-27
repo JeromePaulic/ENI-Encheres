@@ -12,6 +12,7 @@
 </head>
 <body>
 	<jsp:include page="../include/header.jsp"></jsp:include>
+	
 	<main>
 		<h2>Mon profil</h2>
 		<c:if test="${!empty listeCodesErreur}">
@@ -80,7 +81,9 @@
 		<input type="submit" name="supprimermoncompte" value="Supprimer mon compte">
 		</form>
 	</main>
+	
 	<jsp:include page="../include/footer.jsp"></jsp:include>
+	
 	<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/responsiveNav.js"></script>
 </body>
 </html>
