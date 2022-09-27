@@ -7,15 +7,15 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Créer un compte</title>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/base.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/base-styles.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/creationCompte.css">
 </head>
 <body>
 	<header>
-		<h1>ENI-Enchères</h1>
+		<a href="accueil"><img class="logo" src="img/logo.png" alt="logo"></a>
 	</header>
 	<main>
-		<h2>Créer un compte</h2>
+		<h1>Créer un compte</h1>
 		<c:if test="${!empty listeCodesErreur}">
 			<div class="alert alert-danger" role="alert">
 			  <strong>Erreur!</strong>
@@ -27,48 +27,40 @@
 			</div>
 		</c:if>
 		<form action="${pageContext.request.contextPath}/creationCompte" method="post">
-			<label>
-				Pseudo :
-				<input type="text" name="pseudo" required>
-			</label>
-			<label>
-				Nom :
-				<input type="text" name="nom" required>
-			</label>
-			<label>
-				Prénom :
-				<input type="text" name="prenom" required>
-			</label>
-			<label>
-				Email :
-				<input type="text" name="email" required>
-			</label>
-			<label>
-				Telephone :
-				<input type="text" name="telephone">
-			</label>
-			<label>
-				Rue :
-				<input type="text" name="rue" required>
-			</label>
-			<label>
-				Code postal :
-				<input type="text" name="codePostal" required>
-			</label>
-			<label>
-				Ville :
-				<input type="text" name="ville" required>
-			</label>
-			<label>
-				Mot de passe :
-				<input type="password" name="motDePasse" required>
-			</label>
-			<label>
-				Confirmation :
-				<input type="password" name="confirmationMotDePasse" required>
-			</label>
-			<input type="submit" value="Créer">
-			<a href="${pageContext.request.contextPath}/accueil">Annuler</a>
+			<label for="pseudo">Pseudo : </label>
+			<input type="text" id="pseudo" name="pseudo" required>
+			
+			<label for="nom">Nom : </label>
+			<input type="text" id="nom" name="nom" required>
+			
+			<label for="prenom">Prénom : </label>
+			<input type="text" id="prenom" name="prenom" required>
+			
+			<label for="email">Email : </label>
+			<input type="text" id="email" name="email" required>
+			
+			<label for="telephone">Telephone : </label>
+			<input type="text" id="telephone" name="telephone">
+			
+			<label for="rue">Rue : </label>
+			<input type="text" id="rue" name="rue" required>
+			
+			<label for="codePostal">Code postal : </label>
+			<input type="text" id="codePostal" name="codePostal" required>
+			
+			<label for="ville">Ville : </label>
+			<input type="text" id="ville" name="ville" required>
+			
+			<label for="motDePasse">Mot de passe : </label>
+			<input type="password" id="motDePasse" name="motDePasse" required>
+			
+			<label for="password">Confirmation : </label>
+			<input type="password" id="password" name="confirmationMotDePasse" required>
+			
+			<div class="form-btns">
+				<input type="submit" class="btn" value="Créer">
+				<a class="btn" href="${pageContext.request.contextPath}/accueil">Annuler</a>
+			</div>
 		</form>
 	</main>
 </body>
