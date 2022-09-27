@@ -7,14 +7,12 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Accueil enchères</title>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/base.css">
-	<link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/base-styles.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
 </head>
 <body>
 
-	<header>
-		<%@ include file="../include/header.jsp" %>
-	</header>
+	<%@ include file="../include/header.jsp" %>
 <h1>Accueil</h1>
 	<main>
 		<h2>Liste des enchères</h2>
@@ -146,7 +144,8 @@
 			<p>Aucun article mis aux enchères n'a été trouvé</p>
 		</c:if>
 	</main>
-	<%@ include file="../include/footer.html" %>
+	<%@ include file="../include/footer.jsp" %>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/accueil.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/responsiveNav.js"></script>
 </body>
 </html>
