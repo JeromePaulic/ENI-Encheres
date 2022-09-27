@@ -80,7 +80,7 @@ nav label:first-child, #toggle
     display: none;
 }
  
-@media all and (max-width: 360px)
+@media all and (max-width: 200px)
 {
     nav
     {
