@@ -27,48 +27,48 @@
 			</div>
 		</c:if>
 		<form action="${pageContext.request.contextPath}/vente" method="post">
-			<label2>
+			<label>
 				Article : 
 				<input type="text" name="nomArticle" required>
-			</label2>
-			<label2>
+			</label>
+			<label>
 				Description : 
 				<textarea name="description" rows="5" cols="20" required></textarea>
-			</label2>
-			<label2>
+			</label>
+			<label>
 				Catégorie 
 				<select name="noCategorie">
 					<c:forEach var="categorie" items="${categories}">
 						<option value="${categorie.getNoCategorie()}">${categorie.getLibelle()}</option>
 					</c:forEach>
 				</select>
-			</label2>
-			<label2>
+			</label>
+			<label>
 				Mise à prix : 
 				<input type="number" name="prixInitial">
-			</label2>
-			<label2>
+			</label>
+			<label>
 				Début de l'enchère
 				<input type="date" name="dateDebutEncheres" required>
-			</label2>
-			<label2>
+			</label>
+			<label>
 				Fin de l'enchère
 				<input type="date" name="dateFinEncheres" required>
-			</label2>
+			</label>
 			<fieldset>
 				<legend>Retrait</legend>
-				<label2>
+				<label>
 					Rue : 
 					<input type="text" name="rue" value="${utilisateur.getAdresse().getRue()}">
-				</label2>
-				<label2>
+				</label>
+				<label>
 					Code Postal : 
 					<input type="text" name="codePostal" value="${utilisateur.getAdresse().getCodePostal()}">
-				</label2>
-				<label2>
+				</label>
+				<label>
 					Ville : 
 					<input type="text" name="ville" value="${utilisateur.getAdresse().getVille()}">
-				</label2>
+				</label>
 			</fieldset>
 			<input class="button" type="submit" value="Enregistrer">
 			<a class="button" href="${pageContext.request.contextPath}/">Annuler</a>

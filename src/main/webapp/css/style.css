@@ -75,7 +75,7 @@ nav a:hover
 
 /* Menu responsive mobile */
 
-label, #toggle
+nav label:first-child, #toggle
 {
     display: none;
 }

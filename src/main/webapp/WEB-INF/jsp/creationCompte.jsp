@@ -7,14 +7,15 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Créer un compte</title>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/CreationCompte.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/base.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/creationCompte.css">
 </head>
 <body>
 	<header>
 		<h1>ENI-Enchères</h1>
 	</header>
 	<main>
-		<h2>Mon profil</h2>
+		<h2>Créer un compte</h2>
 		<c:if test="${!empty listeCodesErreur}">
 			<div class="alert alert-danger" role="alert">
 			  <strong>Erreur!</strong>

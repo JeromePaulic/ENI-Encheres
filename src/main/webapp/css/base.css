@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
-.disabled {
-	color: #aaa;
+body {
+	font-size: 1em;
 }
+
