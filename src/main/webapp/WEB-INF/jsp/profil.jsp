@@ -16,8 +16,8 @@
 
 	<%@ include file="../include/header.jsp" %>
 	
- 	<h1>Profil</h1>
-	<div>
+	<main>
+	 	<h1>Profil</h1>
 		<form method="POST">
 			<div>
 				<p><span>Pseudo : </span><span>${utilisateur.getPseudo()}</span></p>
@@ -47,7 +47,7 @@
 			<a class="button" href="${pageContext.request.contextPath}/modifier">Modifier</a>
 			</c:if>
 		</form>
-	</div>		
+	</main>
 	
 	<%@ include file="../include/footer.jsp" %>
 	

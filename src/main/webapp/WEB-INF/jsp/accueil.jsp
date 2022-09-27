@@ -145,6 +145,7 @@
 			<p>Aucun article mis aux enchères n'a été trouvé</p>
 		</c:if>
 	</main>
+	
 	<%@ include file="../include/footer.jsp" %>
 	
 	<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/accueil.js"></script>

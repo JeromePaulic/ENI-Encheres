@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
 </head>
 <body>
+
 	<jsp:include page="../include/header.jsp"></jsp:include>
 	
 	<main>
@@ -76,9 +77,8 @@
 				<p><span>Crédit: </span><span>${utilisateur.getCredit()}</span></p>
 			</div>
 			<input type="submit" value="Enregister">
-			
 	
-		<input type="submit" name="supprimermoncompte" value="Supprimer mon compte">
+			<input type="submit" name="supprimermoncompte" value="Supprimer mon compte">
 		</form>
 	</main>
 	
