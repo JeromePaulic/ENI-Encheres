@@ -6,7 +6,8 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/vente.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
 	<title>Nouvelle vente</title>
 </head>
 <body>
@@ -27,53 +28,55 @@
 			</div>
 		</c:if>
 		<form action="${pageContext.request.contextPath}/vente" method="post">
-			<label>
-				Article : 
+			
+			<label>	 Article : </label>
 				<input type="text" name="nomArticle" required>
-			</label>
-			<label>
-				Description : 
-				<textarea name="description" rows="5" cols="20" required></textarea>
-			</label>
-			<label>
-				Catégorie 
+			
+			
+			<label>	Description : </label>
+				<textarea name="description" rows="5" cols="40" required></textarea>
+			
+			
+			<label>	Catégorie 	</label>
 				<select name="noCategorie">
 					<c:forEach var="categorie" items="${categories}">
 						<option value="${categorie.getNoCategorie()}">${categorie.getLibelle()}</option>
 					</c:forEach>
 				</select>
-			</label>
-			<label>
-				Mise à prix : 
+		
+			
+			<label>	Mise à prix : </label>
 				<input type="number" name="prixInitial">
-			</label>
-			<label>
-				Début de l'enchère
+			
+			
+			<label>	Début de  </label>
 				<input type="date" name="dateDebutEncheres" required>
-			</label>
-			<label>
-				Fin de l'enchère
+			
+			
+			<label>	Fin de l'enchère </label>
 				<input type="date" name="dateFinEncheres" required>
-			</label>
+			
 			<fieldset>
 				<legend>Retrait</legend>
-				<label>
-					Rue : 
+				
+					<label> Rue : </label>
 					<input type="text" name="rue" value="${utilisateur.getAdresse().getRue()}">
-				</label>
-				<label>
-					Code Postal : 
+				
+				
+				<label>	Code Postal : </label>
 					<input type="text" name="codePostal" value="${utilisateur.getAdresse().getCodePostal()}">
-				</label>
-				<label>
-					Ville : 
+				
+				
+					<label> Ville : </label>
 					<input type="text" name="ville" value="${utilisateur.getAdresse().getVille()}">
-				</label>
+				
 			</fieldset>
+			<div class="button-article">
 			<input class="button" type="submit" value="Enregistrer">
 			<a class="button" href="${pageContext.request.contextPath}/">Annuler</a>
+			</div>
 		</form>
 	</main>
-	<%@ include file="../include/footer.jsp" %>	
+	 <%@ include file="../include/footer.jsp" %>	
 </body>
 </html>

@@ -6,10 +6,11 @@
 
 <!DOCTYPE html>
 <html>
-	<head>
+<head>
 	<meta charset="UTF-8">
-	<link href="${pageContext.request.contextPath}/css/base-styles.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/base-styles.css" rel="stylesheet">
 	<title>Profil</title>
 </head>
 <body>
@@ -47,10 +48,8 @@
 			<a class="button" href="${pageContext.request.contextPath}/modifier">Modifier</a>
 			</c:if>
 		</form>
-	</main>
-	
+	</main>		
 	<%@ include file="../include/footer.jsp" %>
-	
 	<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/responsiveNav.js"></script>
 </body>
 </html>
