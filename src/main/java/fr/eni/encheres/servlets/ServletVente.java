@@ -20,9 +20,7 @@ import fr.eni.encheres.bo.Article;
 import fr.eni.encheres.bo.Categorie;
 import fr.eni.encheres.bo.Utilisateur;
 
-/**
- * Servlet implementation class ServletVente
- */
+
 @WebServlet("/vente")
 public class ServletVente extends HttpServlet {
 	
