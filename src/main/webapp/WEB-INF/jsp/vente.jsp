@@ -6,8 +6,10 @@
 <html>
 <head>
 	<meta charset="UTF-8">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/base-styles.css">
 	<link href="${pageContext.request.contextPath}/css/vente.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
+    
 	<title>Nouvelle vente</title>
 </head>
 <body>
@@ -34,7 +36,7 @@
 			
 			
 			<label>	Description : </label>
-				<textarea name="description" rows="5" cols="40" required></textarea>
+				<textarea name="description" rows="5" required></textarea>
 			
 			
 			<label>	Catégorie 	</label>
@@ -58,7 +60,7 @@
 			
 			<fieldset>
 				<legend>Retrait</legend>
-				
+					
 					<label> Rue : </label>
 					<input type="text" name="rue" value="${utilisateur.getAdresse().getRue()}">
 				
@@ -72,8 +74,8 @@
 				
 			</fieldset>
 			<div class="button-article">
-			<input class="button" type="submit" value="Enregistrer">
-			<a class="button" href="${pageContext.request.contextPath}/">Annuler</a>
+			<input class="btn" type="submit" value="Enregistrer">
+			<a class="btn" href="${pageContext.request.contextPath}/">Annuler</a>
 			</div>
 		</form>
 	</main>
