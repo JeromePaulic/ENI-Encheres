@@ -11,13 +11,9 @@
 	<link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/css/accueil.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet">
-</head>
 <body>
-
-	<header>
-		<%@ include file="../include/header.jsp" %>
-	</header>
-<h1>Accueil</h1>
+	<%@ include file="../include/header.jsp" %>	
+	<h1>Accueil</h1>
 	<main>
 		<h2>Liste des enchères</h2>
 		<form action="${pageContext.request.contextPath}/accueil" method="post">
@@ -149,7 +145,7 @@
 		</c:if>
 	</main>
 	<%@ include file="../include/footer.jsp" %>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/responsiveNav.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/accueil.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/responsiveNav.js"></script>
 </body>
 </html>
