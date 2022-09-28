@@ -8,14 +8,14 @@
 	<meta charset="UTF-8">
 	<title>Accueil enchères</title>
 	
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/base.css">
-	<link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/base-styles.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/accueil.css">
+
 </head>
 <body>
 
-	<header>
 		<%@ include file="../include/header.jsp" %>
-	</header>
 <h1>Accueil</h1>
 	<main>
 		<h2>Liste des enchères</h2>
