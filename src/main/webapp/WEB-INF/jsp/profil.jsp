@@ -7,23 +7,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/base-styles.css" rel="stylesheet">
-<title>Profil</title>
+	<meta charset="UTF-8">
+	<link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/base-styles.css" rel="stylesheet">
+	<title>Profil</title>
 </head>
 <body>
 
-
- <header>
-		<%@ include file="../include/header.jsp" %>
-	</header>
- 
- <h1>Profil</h1>
- 
- 
-	<div>
+	<%@ include file="../include/header.jsp" %>
+	
+	<main>
+	 	<h1>Profil</h1>
 		<form method="POST">
 			<div>
 				<p><span>Pseudo : </span><span>${utilisateur.getPseudo()}</span></p>
@@ -53,8 +48,8 @@
 			<a class="button" href="${pageContext.request.contextPath}/modifier">Modifier</a>
 			</c:if>
 		</form>
-	</div>		
-<%@ include file="../include/footer.jsp" %>
-<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/responsiveNav.js"></script>
+	</main>		
+	<%@ include file="../include/footer.jsp" %>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/responsiveNav.js"></script>
 </body>
 </html>
