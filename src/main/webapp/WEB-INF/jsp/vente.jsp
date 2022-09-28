@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/base-styles.css">
 	<link href="${pageContext.request.contextPath}/css/vente.css" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css">
     
 	<title>Nouvelle vente</title>
 </head>

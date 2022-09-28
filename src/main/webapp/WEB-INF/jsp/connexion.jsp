@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/base-styles.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/connexion.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css">
 </head>
 <body>
 	<jsp:include page="../include/header.jsp"></jsp:include>

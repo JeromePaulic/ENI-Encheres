@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/base-styles.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/modifierProfil.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css">
 </head>
 
 <body>
@@ -71,7 +72,7 @@
 			<a class="btn" id="btn-retour" href="${pageContext.request.contextPath}/accueil">Retour</a>
 		</form>
 	</main>
-	<div class="clear"></div>
+	
 	<jsp:include page="../include/footer.jsp"></jsp:include>
 	
 	<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/responsiveNav.js"></script>

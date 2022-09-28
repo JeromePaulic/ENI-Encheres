@@ -11,6 +11,7 @@
 	<link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/css/base-styles.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet">
 	<title>Profil</title>
 </head>
 <body>
@@ -49,7 +50,9 @@
 			</c:if>
 		</form>
 	</main>		
+	
 	<%@ include file="../include/footer.jsp" %>
+	
 	<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/responsiveNav.js"></script>
 </body>
 </html>
