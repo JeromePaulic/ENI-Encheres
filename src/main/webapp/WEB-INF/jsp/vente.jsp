@@ -74,6 +74,6 @@
 			<a class="button" href="${pageContext.request.contextPath}/">Annuler</a>
 		</form>
 	</main>
-	<%@ include file="../include/footer.html" %>	
+	<%@ include file="../include/footer.jsp" %>	
 </body>
 </html>
