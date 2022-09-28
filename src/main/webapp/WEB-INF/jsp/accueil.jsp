@@ -149,5 +149,6 @@
 	</main>
 	<%@ include file="../include/footer.jsp" %>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/accueil.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/responsiveNav.js"></script>
 </body>
 </html>
