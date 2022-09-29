@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/base-styles.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/accueil.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css">
 
 </head>
 <body>
@@ -23,7 +24,7 @@
 			<p>Filtres : </p> 
 			
 			<input type="text" name="recherche" placeholder="Le nom de l'article contient"> 
-				
+				<br><br>
 			<label for="categorie">Catégorie : </label> 
 			<select name="categorie">
 				<option value="">Toutes</option>
@@ -31,7 +32,7 @@
 					<option value="${categorie.getNoCategorie()}">${categorie.getLibelle()}</option>
 				</c:forEach>
 			</select>
-			
+			<br><br>
 			<c:if test="${!empty utilisateur}">
 	      		<label>
 					<input type="radio" id="achat" name="transaction" value="achat" 
@@ -70,6 +71,7 @@
 				 >
 					mes enchères remportées
 				</label>
+				<br><br>
 				<label for="vente">
 					<input type="radio" id="vente" name="transaction" value="vente"
 						<c:choose>
@@ -107,9 +109,10 @@
 					ventes terminées
 				</label>
 			</c:if>
-			<input type="submit" value="Rechercher">
+			<br><br>
+		<center><input class="btn" type="submit" value="Rechercher"></center>
 		</form>
-		
+		<div class="articles">
 		<c:if test="${!empty articles}">
 			<c:forEach var="article" items="${articles}">
 				<article>
@@ -143,6 +146,7 @@
 				</article>
 			</c:forEach>
 		</c:if>
+		</div>
 		<c:if test="${empty articles}">
 			<p>Aucun article mis aux enchères n'a été trouvé</p>
 		</c:if>

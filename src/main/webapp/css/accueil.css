@@ -1,0 +1,84 @@
+@charset "UTF-8";
+
+body
+{
+	text-align: center;
+	
+}
+
+
+
+
+.articles {
+	
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	margin: 20px;
+	
+	
+}
+
+
+article {
+		position: center;
+		border:2px solid black;
+		padding:5px;
+		border-radius: 5px;
+		background-color: #fff;
+		width: 40% ;
+		display: inline-block;
+		text-align: center;
+		margin-left: 5px;
+        margin-right: 5px;
+        float: center;
+
+	}
+	
+input, select {
+	
+	border-color: #8c52ff;
+	border-radius: 5px;
+	border: 2px simple #8c52ff;
+	background-color: #cccccc;
+	text-align: center;
+}
+	
+
+	
+ 
+ 
+ 
+ @media all and (max-width: 900px)
+{
+	
+	
+	.articles {
+	
+	flex-direction: column; 
+	align-items: center;
+	margin-top:10px;
+	padding: 10px;
+	}
+	
+	
+	
+	article {
+		
+		position: center;
+		top: 0; left: 0;
+		width: 80%;
+		background-color: #fff;
+		text-align: center;
+	}
+	
+	
+}
+
+a {
+		color: #8c52ff;
+}
+
+a:hover {
+	color: black;
+}
