@@ -98,6 +98,12 @@ public class UtilisateurManager {
 		if (!utilisateur.getAdresse().getCodePostal().matches("\\d{5}")) {
 			be.ajouterErreur(CodesResultatBLL.CP_NON_VALIDE);
 		}
+		if (utilisateur.getAdresse().getRue().length() > 30) {
+			be.ajouterErreur(CodesResultatBLL.RUE_TROP_LONGUE);
+		}
+		if (utilisateur.getAdresse().getVille().length() > 30) {
+			be.ajouterErreur(CodesResultatBLL.VILLE_TROP_LONGUE);
+		}
 		if (be.hasErreurs()) {
 			throw be;
 		}
@@ -118,7 +124,6 @@ public class UtilisateurManager {
 			user.setMotDePasse(motDePasseNew);
 		}
 		validerMajUtilisateur(user, confirmationMotDePasse,utilisateurSession,motDePasseNew);
-		
 		user = utilisateurDAO.modifierUtilisateur(user);
 		return user;
 	}
@@ -175,6 +180,12 @@ public class UtilisateurManager {
 		}
 		if (!utilisateur.getAdresse().getCodePostal().matches("\\d{5}")) {
 			be.ajouterErreur(CodesResultatBLL.CP_NON_VALIDE);
+		}
+		if (utilisateur.getAdresse().getRue().length() > 30) {
+			be.ajouterErreur(CodesResultatBLL.RUE_TROP_LONGUE);
+		}
+		if (utilisateur.getAdresse().getVille().length() > 30) {
+			be.ajouterErreur(CodesResultatBLL.VILLE_TROP_LONGUE);
 		}
 		if (be.hasErreurs()) {
 			throw be;

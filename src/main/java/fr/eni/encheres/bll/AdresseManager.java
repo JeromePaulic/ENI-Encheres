@@ -26,7 +26,7 @@ public class AdresseManager {
 		return adresseDAO.insert(adresse);
 	}
 	
-	private void validerAdresse(Adresse adresse) throws BusinessException {
+	public void validerAdresse(Adresse adresse) throws BusinessException {
 		BusinessException be = new BusinessException();
 		if (!adresse.getRue().matches("[\\w+\\s*]+")) {
 			be.ajouterErreur(CodesResultatBLL.RUE_NON_VALIDE);
@@ -36,6 +36,12 @@ public class AdresseManager {
 		}
 		if (!adresse.getVille().matches("[[A-Za-z-]+\\s*]+")) {
 			be.ajouterErreur(CodesResultatBLL.VILLE_NON_VALIDE);
+		}
+		if (adresse.getRue().length() > 30) {
+			be.ajouterErreur(CodesResultatBLL.RUE_TROP_LONGUE);
+		}
+		if (adresse.getVille().length() > 30) {
+			be.ajouterErreur(CodesResultatBLL.VILLE_TROP_LONGUE);
 		}
 		if (be.hasErreurs()) {
 			throw be;

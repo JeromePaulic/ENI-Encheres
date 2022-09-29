@@ -97,4 +97,12 @@ public abstract class CodesResultatBLL {
 	 * Echec creation/maj utilisateur : le mot de passe dépasse le nombre de caractère autorisés
 	 */
 	public static final int MDP_TROP_LONG = 20022;
+	/**
+	 * Echec creation/maj utilisateur : la rue dépasse le nombre de caractère autorisés
+	 */
+	public static final int RUE_TROP_LONGUE = 20023;
+	/**
+	 * Echec creation/maj utilisateur : la ville dépasse le nombre de caractère autorisés
+	 */
+	public static final int VILLE_TROP_LONGUE = 20024;
 }
