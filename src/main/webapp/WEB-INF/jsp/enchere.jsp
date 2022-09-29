@@ -6,24 +6,44 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Enchère</title>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/base-styles.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/enchere.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css">
 </head>
 <body>
-	<header>
-		<h1>ENI-Enchères</h1>
-	</header>
+	<jsp:include page="../include/header.jsp"></jsp:include>
 	
 	<main>
-		<h2>Détail vente</h2>
+		<h1>Détail vente</h1>
 		<c:if test="${!empty article}">
 			<h3>${article.getNomArticle()}</h3>
-			<p>Description : ${article.getDescription()}</p>
-			<p>Catégorie : ${article.getCategorie().getLibelle()}</p>
-			<p>Meilleure offre : *** A implémenter après la création d'enchères ***</p>
-			<p>Mise à prix : ${article.getPrixInitial()} points</p>
-			<p>Début de l'enchère : ${article.getFormattedDateDebutEncheres()}</p>
-			<p>Fin de l'enchère : ${article.getFormattedDateFinEncheres()}</p>
 			<p>
-				Retrait : 
+				<span>Description : </span>
+				<span> ${article.getDescription()}</span>
+			</p>
+			<p>
+				<span>Catégorie : </span>
+				<span> ${article.getCategorie().getLibelle()}</span>
+			</p>
+			<p>
+				<span>Meilleure offre : </span>
+				<span> /</span>
+			</p>
+			<p>
+				<span>Mise à prix : </span>
+				<span> ${article.getPrixInitial()} points</span>
+			</p>
+			<p>
+				<span>Début de l'enchère : </span>
+				<span> ${article.getFormattedDateDebutEncheres()}</span>
+			</p>
+			<p>
+				<span>Fin de l'enchère : </span>
+				<span> ${article.getFormattedDateFinEncheres()}</span>
+			</p>
+			<p>
+				Retrait :
 				<c:choose>
 					<c:when test="${!empty article.getAdresseRetrait()}">
 						${article.getAdresseRetrait().formatted()}
@@ -33,26 +53,31 @@
 					</c:otherwise>
 				</c:choose>
 			</p>
-			<p>Vendeur : ${article.getVendeur().getPseudo()}</p>
+			<p>
+				<span>Vendeur : </span>
+				<span> ${article.getVendeur().getPseudo()}</span>
+			</p>
 			<c:choose>
 				<c:when test="${utilisateur.getNoUtilisateur() == article.getVendeur().getNoUtilisateur()}">
 					<c:if test="${article.estModifiable()}">
-						<a href="${pageContext.request.contextPath}/modifierVente?id=${article.getNoArticle()}">
+						<a class="btn" href="${pageContext.request.contextPath}/modifierVente?id=${article.getNoArticle()}">
 							Modifier la vente
 						</a>
 					</c:if>
 				</c:when>
 				<c:otherwise>
 					<form action="${pageContext.request.contextPath}/enchere" method="post">
-						<label>
-							Ma proposition :
-							<input type="number" name="enchere">
-						</label>
-						<input type="submit" value="Enchérir">
+						<label>Ma proposition :	</label>
+						<input type="number" name="enchere">
+						<div class="break"></div>
+						<input type="submit" class="btn" value="Enchérir">
 					</form>
 				</c:otherwise>
 			</c:choose>
 		</c:if>
 	</main>
+	<jsp:include page="../include/footer.jsp"></jsp:include>
+	
+	<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/responsiveNav.js"></script>
 </body>
 </html>
