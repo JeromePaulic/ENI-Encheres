@@ -18,7 +18,7 @@
 		<%@ include file="../include/header.jsp" %>
 		
 	</header>
-	<h1>Nouvelle vente</h1>
+	<h1 id="vente">Nouvelle vente</h1>
 	<main>
 		<c:if test="${!empty listeCodesErreur}">
 			<div class="alert alert-danger" role="alert">
@@ -74,11 +74,12 @@
 					<input type="text" name="ville" value="${utilisateur.getAdresse().getVille()}">
 				
 			</fieldset>
-			<div class="button-article">
-			<input class="btn" type="submit" value="Enregistrer">
-			<a class="btn" href="${pageContext.request.contextPath}/">Annuler</a>
-			</div>
+			
+			<input class="btn" id="btn-enregistrer"type="submit" value="Enregistrer">
+			<a class="btn"  id="btn-annuler"href="${pageContext.request.contextPath}/">Annuler</a>
+			
 		</form>
+		
 	</main>
 	 <%@ include file="../include/footer.jsp" %>	
 </body>
