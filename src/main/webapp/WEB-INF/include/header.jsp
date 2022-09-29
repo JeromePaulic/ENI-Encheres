@@ -13,7 +13,7 @@
 	 		<c:otherwise>
 					<a href="${pageContext.request.contextPath}/enchere">Enchère</a> 
 				<a href ="${pageContext.request.contextPath}/vente">Vendre un Article</a>
-				<a href ="${pageContext.request.contextPath}/profil?id=${sessionScope.utilisateur.noUtilisateur}">Mon Profil</a>
+				<a href ="${pageContext.request.contextPath}/profil?id=${sessionScope.utilisateur.getNoUtilisateur()}">Mon Profil</a>
 				<a href ="${pageContext.request.contextPath}/deconnexion">Déconnexion</a>
 	 		</c:otherwise>
 		</c:choose>

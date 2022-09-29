@@ -73,4 +73,28 @@ public abstract class CodesResultatBLL {
 	 * Echec maj compte : le mot de passe est incorrect
 	 */
 	public static final int EMAIL_NON_VALIDE = 20016;
+	/**
+	 * Echec creation/maj utilisateur : le pseudo dépasse le nombre de caractère autorisés
+	 */
+	public static final int PSEUDO_TROP_LONG = 20017;
+	/**
+	 * Echec creation/maj utilisateur : le nom dépasse le nombre de caractère autorisés
+	 */
+	public static final int NOM_TROP_LONG = 20018;
+	/**
+	 * Echec creation/maj utilisateur : le prénom dépasse le nombre de caractère autorisés
+	 */
+	public static final int PRENOM_TROP_LONG = 20019;
+	/**
+	 * Echec creation/maj utilisateur : le email dépasse le nombre de caractère autorisés
+	 */
+	public static final int EMAIL_TROP_LONG = 20020;
+	/**
+	 * Echec creation/maj utilisateur : le telephone dépasse le nombre de caractère autorisés
+	 */
+	public static final int TELEPHONE_TROP_LONG = 20021;
+	/**
+	 * Echec creation/maj utilisateur : le mot de passe dépasse le nombre de caractère autorisés
+	 */
+	public static final int MDP_TROP_LONG = 20022;
 }

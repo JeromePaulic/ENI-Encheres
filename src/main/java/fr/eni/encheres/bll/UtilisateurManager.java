@@ -55,6 +55,7 @@ public class UtilisateurManager {
 	
 	private void validerUtilisateur(Utilisateur utilisateur, String confirmationMotDePasse) throws BusinessException {
 		BusinessException be = new BusinessException();
+		
 		if (emailDejaExistant(utilisateur.getEmail())) {
 			be.ajouterErreur(CodesResultatBLL.EMAIL_DEJA_EXISTANT);
 		}
@@ -75,6 +76,24 @@ public class UtilisateurManager {
 		}
 		if (!utilisateur.getEmail().matches(".+@[\\w]+\\.[A-Za-z]+")) {
 			be.ajouterErreur(CodesResultatBLL.EMAIL_NON_VALIDE);
+		}
+		if (utilisateur.getPseudo().length() > 30) {
+			be.ajouterErreur(CodesResultatBLL.PSEUDO_TROP_LONG);
+		}
+		if (utilisateur.getNom().length() > 30) {
+			be.ajouterErreur(CodesResultatBLL.NOM_TROP_LONG);
+		}
+		if (utilisateur.getPrenom().length() > 30) {
+			be.ajouterErreur(CodesResultatBLL.PRENOM_TROP_LONG);
+		}
+		if (utilisateur.getTelephone().length() > 15) {
+			be.ajouterErreur(CodesResultatBLL.TELEPHONE_TROP_LONG);
+		}
+		if (utilisateur.getEmail().length() > 50) {
+			be.ajouterErreur(CodesResultatBLL.EMAIL_TROP_LONG);
+		}
+		if (utilisateur.getMotDePasse().length() > 30) {
+			be.ajouterErreur(CodesResultatBLL.MDP_TROP_LONG);
 		}
 		if (!utilisateur.getAdresse().getCodePostal().matches("\\d{5}")) {
 			be.ajouterErreur(CodesResultatBLL.CP_NON_VALIDE);
@@ -135,6 +154,24 @@ public class UtilisateurManager {
 		}
 		if (!utilisateur.getEmail().matches(".+@[\\w]+\\.[A-Za-z]+")) {
 			be.ajouterErreur(CodesResultatBLL.EMAIL_NON_VALIDE);
+		}
+		if (utilisateur.getPseudo().length() > 30) {
+			be.ajouterErreur(CodesResultatBLL.PSEUDO_TROP_LONG);
+		}
+		if (utilisateur.getNom().length() > 30) {
+			be.ajouterErreur(CodesResultatBLL.NOM_TROP_LONG);
+		}
+		if (utilisateur.getPrenom().length() > 30) {
+			be.ajouterErreur(CodesResultatBLL.PRENOM_TROP_LONG);
+		}
+		if (utilisateur.getTelephone().length() > 15) {
+			be.ajouterErreur(CodesResultatBLL.TELEPHONE_TROP_LONG);
+		}
+		if (utilisateur.getEmail().length() > 50) {
+			be.ajouterErreur(CodesResultatBLL.EMAIL_TROP_LONG);
+		}
+		if (utilisateur.getMotDePasse().length() > 30) {
+			be.ajouterErreur(CodesResultatBLL.MDP_TROP_LONG);
 		}
 		if (!utilisateur.getAdresse().getCodePostal().matches("\\d{5}")) {
 			be.ajouterErreur(CodesResultatBLL.CP_NON_VALIDE);
