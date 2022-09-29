@@ -4,12 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 
 import fr.eni.encheres.bo.Adresse;
 import fr.eni.encheres.dal.AdresseDAO;
 import fr.eni.encheres.dal.ConnectionProvider;
-import fr.eni.encheres.dal.DAOFactory;
-import fr.eni.encheres.dal.UtilisateurDAO;
 
 public class AdresseDAOJdbcImpl implements AdresseDAO {
 	
@@ -18,7 +17,6 @@ public class AdresseDAOJdbcImpl implements AdresseDAO {
 
 	@Override
 	public Adresse getById(int id) {
-		UtilisateurDAO utilisateurDAO = DAOFactory.getUtilisateurDAO();
 		Adresse adresse = null;
 		try(Connection cnx = ConnectionProvider.getConnection();
 				PreparedStatement pstmt = cnx.prepareStatement(SELECT_BY_ID)) {
@@ -27,7 +25,7 @@ public class AdresseDAOJdbcImpl implements AdresseDAO {
 				if (rs.next()) {
 					adresse = new Adresse(
 							rs.getInt("no_adresse"),
-							utilisateurDAO.getUtilisateurByNo(rs.getInt("no_utilisateur")),
+							rs.getInt("no_utilisateur"),
 							rs.getString("rue"),
 							rs.getString("code_postal"),
 							rs.getString("ville")
@@ -44,7 +42,12 @@ public class AdresseDAOJdbcImpl implements AdresseDAO {
 	public Adresse insert(Adresse adresse) {
 		try(Connection cnx = ConnectionProvider.getConnection();
 				PreparedStatement pstmt = cnx.prepareStatement(INSERT_ADRESSE, PreparedStatement.RETURN_GENERATED_KEYS)) {
-			pstmt.setInt(1, adresse.getUtilisateur().getNoUtilisateur());
+			if (adresse.getNoUtilisateur() == null) {
+				pstmt.setNull(1, Types.INTEGER);
+			}
+			else {
+				pstmt.setInt(1, adresse.getNoUtilisateur());
+			}
 			pstmt.setString(2, adresse.getRue());
 			pstmt.setString(3, adresse.getCodePostal());
 			pstmt.setString(4, adresse.getVille());

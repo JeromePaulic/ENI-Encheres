@@ -20,7 +20,9 @@ import fr.eni.encheres.bo.Article;
 import fr.eni.encheres.bo.Categorie;
 import fr.eni.encheres.bo.Utilisateur;
 
-
+/**
+ * Servlet implementation class ServletVente
+ */
 @WebServlet("/vente")
 public class ServletVente extends HttpServlet {
 	
@@ -52,10 +54,12 @@ public class ServletVente extends HttpServlet {
 		String rue = request.getParameter("rue").trim();
 		String codePostal = request.getParameter("codePostal").trim();
 		String ville = request.getParameter("ville").trim();
-		Adresse adresse = new Adresse(utilisateur.getAdresse().getNoAdresse(), utilisateur, rue, codePostal, ville);
+		Adresse adresse = new Adresse(utilisateur.getAdresse().getNoAdresse(), utilisateur.getNoUtilisateur(), rue, codePostal, ville);
 		Adresse adresseRetrait = null;
 		try {
 			if (!adresse.equals(utilisateur.getAdresse())) {
+				System.out.println("adresse retrait != adresse utilisateur");
+				adresse.setNoUtilisateur(null);
 				adresseRetrait = AdresseManager.getInstance().creerAdresse(adresse);
 			}
 			

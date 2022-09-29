@@ -73,7 +73,7 @@ public class UtilisateurManager {
 		if (!utilisateur.getPrenom().matches("[A-Za-z]+")) {
 			be.ajouterErreur(CodesResultatBLL.PRENOM_NON_VALIDE);
 		}
-		if (!utilisateur.getEmail().matches("[\\w]+@[\\w]+\\.[A-Za-z]+")) {
+		if (!utilisateur.getEmail().matches(".+@[\\w]+\\.[A-Za-z]+")) {
 			be.ajouterErreur(CodesResultatBLL.EMAIL_NON_VALIDE);
 		}
 		if (!utilisateur.getAdresse().getCodePostal().matches("\\d{5}")) {
@@ -124,7 +124,6 @@ public class UtilisateurManager {
 		if(!confirmationMotDePasse.isEmpty()&&!utilisateur.getMotDePasse().equals(confirmationMotDePasse)) {
 			be.ajouterErreur(CodesResultatBLL.ERREUR_CONFIRMATION_MDP);
 		}
-		
 		if (!utilisateur.getPseudo().matches("\\w+")) {
 			be.ajouterErreur(CodesResultatBLL.PSEUDO_NON_VALIDE);
 		}
@@ -134,7 +133,7 @@ public class UtilisateurManager {
 		if (!utilisateur.getPrenom().matches("[A-Za-z]+")) {
 			be.ajouterErreur(CodesResultatBLL.PRENOM_NON_VALIDE);
 		}
-		if (!utilisateur.getEmail().matches("[\\w]+@[\\w]+\\.[A-Za-z]+")) {
+		if (!utilisateur.getEmail().matches(".+@[\\w]+\\.[A-Za-z]+")) {
 			be.ajouterErreur(CodesResultatBLL.EMAIL_NON_VALIDE);
 		}
 		if (!utilisateur.getAdresse().getCodePostal().matches("\\d{5}")) {
@@ -150,6 +149,5 @@ public class UtilisateurManager {
 
 		validerMajUtilisateur(user, confirmationMotDePasse, utilisateurSession, motDePasseNew);
 		utilisateurDAO.supprimerUtilisateur(user);
-
 	}
 }

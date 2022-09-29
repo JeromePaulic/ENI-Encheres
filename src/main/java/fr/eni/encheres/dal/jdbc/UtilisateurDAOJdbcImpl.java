@@ -18,11 +18,10 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	private final String SELECT_BY_EMAIL = "SELECT u.no_utilisateur, no_adresse, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur FROM UTILISATEURS u JOIN ADRESSES a ON u.no_utilisateur = a.no_utilisateur WHERE email = ?;";
 	private final String SELECT_BY_NO = "SELECT u.no_utilisateur, no_adresse, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur FROM UTILISATEURS u JOIN ADRESSES a ON u.no_utilisateur = a.no_utilisateur WHERE u.no_utilisateur = ?;";
 	private final String SELECT_BY_PSEUDO = "SELECT u.no_utilisateur, no_adresse, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur FROM UTILISATEURS u JOIN ADRESSES a ON u.no_utilisateur = a.no_utilisateur WHERE pseudo = ?;";
-	private final String UPDATE_UTILISATEUR ="UPDATE UTILISATEURS SET pseudo=?,nom=?, prenom=?,email=?, telephone=?,mot_de_passe=? WHERE no_utilisateur =?;";
+	private final String UPDATE_UTILISATEUR ="UPDATE UTILISATEURS SET pseudo=?, nom=?, prenom=?, email=?, telephone=?, mot_de_passe=? WHERE no_utilisateur =?;";
 	private final String UPDATE_ADRESSE ="UPDATE ADRESSES SET rue=?,code_postal=?,ville=? WHERE no_utilisateur=?;";
-	private final String DELETE_ADRESSES ="DELETE FROM ADRESSES WHERE no_utilisateur=?;";
-	private final String DELETE_UTILISATEURS="DELETE FROM UTILISATEURS WHERE no_utilisateur=?;";
-	
+	private final String DELETE_ADRESSES = "DELETE FROM ADRESSES WHERE no_utilisateur=?;";
+	private final String DELETE_UTILISATEURS = "DELETE FROM UTILISATEURS WHERE no_utilisateur=?;";
 	
 	@Override
 	public Utilisateur getUtilisateurByEmail(String email) {
@@ -38,7 +37,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 				if (rs.next()) {
 					Adresse adresse = new Adresse(
 							rs.getInt("no_adresse"),
-							null,
+							rs.getInt("no_utilisateur"),
 							rs.getString("rue"),
 							rs.getString("code_postal"),
 							rs.getString("ville")
@@ -55,7 +54,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 							rs.getBoolean("administrateur"),
 							adresse
 					);
-					adresse.setUtilisateur(utilisateur);
 				}
 			}
 		}
@@ -75,7 +73,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 				if (rs.next()) {
 					Adresse adresse = new Adresse(
 							rs.getInt("no_adresse"),
-							null,
+							rs.getInt("no_utilisateur"),
 							rs.getString("rue"),
 							rs.getString("code_postal"),
 							rs.getString("ville")
@@ -92,7 +90,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 							rs.getBoolean("administrateur"),
 							adresse
 					);
-					adresse.setUtilisateur(utilisateur);
 				}
 			}
 		} catch (SQLException e) {
@@ -125,7 +122,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 				if (keys.next()) {
 					noUtilisateur = keys.getInt(1);
 					utilisateur.setNoUtilisateur(noUtilisateur);
-					utilisateur.getAdresse().setUtilisateur(utilisateur);
+					utilisateur.getAdresse().setNoUtilisateur(noUtilisateur);
 					adresseDAO.insert(utilisateur.getAdresse());
 				}
 			}
@@ -148,11 +145,12 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 				pstmt.setString(6, utilisateur.getMotDePasse());
 			    pstmt.setInt(7,utilisateur.getNoUtilisateur());
 			    pstmt.executeUpdate();
+			    
 			    try(PreparedStatement pstmt2 = cnx.prepareStatement(UPDATE_ADRESSE)) {
 			    	pstmt2.setString(1, utilisateur.getAdresse().getRue());
 					pstmt2.setString(2, utilisateur.getAdresse().getCodePostal());
 					pstmt2.setString(3, utilisateur.getAdresse().getVille());
-					pstmt2.setInt(4, utilisateur.getAdresse().getUtilisateur().getNoUtilisateur());
+					pstmt2.setInt(4, utilisateur.getAdresse().getNoUtilisateur());
 					pstmt2.executeUpdate();		    
 			    }
 			  
@@ -161,11 +159,12 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		}
 		return utilisateur;
 	}
+	
 	@Override
 	public  void supprimerUtilisateur (Utilisateur utilisateur) {
 		try(	Connection cnx = ConnectionProvider.getConnection();
 				PreparedStatement pstmt = cnx.prepareStatement(DELETE_ADRESSES)){
-			pstmt.setInt(1, utilisateur.getAdresse().getUtilisateur().getNoUtilisateur());
+			pstmt.setInt(1, utilisateur.getAdresse().getNoUtilisateur());
 			pstmt.executeUpdate();
 				try(PreparedStatement pstmt3 = cnx.prepareStatement(DELETE_UTILISATEURS)){
 					pstmt3.setInt(1, utilisateur.getNoUtilisateur());
@@ -174,10 +173,8 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 	}
-
 }
