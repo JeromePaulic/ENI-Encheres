@@ -106,7 +106,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	@Override
 	public Utilisateur insertUtilisateur(Utilisateur utilisateur) {
 		AdresseDAO adresseDAO = DAOFactory.getAdresseDAO();
-		int noUtilisateur = 0;
+		
 		try (Connection cnx = ConnectionProvider.getConnection();
 				PreparedStatement pstmt = cnx.prepareStatement(INSERT_UTILISATEUR, PreparedStatement.RETURN_GENERATED_KEYS)) {
 			pstmt.setString(1, utilisateur.getPseudo());
@@ -118,16 +118,17 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			pstmt.setInt(7, utilisateur.getCredit());
 			pstmt.setBoolean(8, utilisateur.isAdministrateur());
 			pstmt.execute();
+			
 			try (ResultSet keys = pstmt.getGeneratedKeys()) {		
 				if (keys.next()) {
-					noUtilisateur = keys.getInt(1);
+					int noUtilisateur = keys.getInt(1);
 					utilisateur.setNoUtilisateur(noUtilisateur);
 					utilisateur.getAdresse().setNoUtilisateur(noUtilisateur);
 					adresseDAO.insert(utilisateur.getAdresse());
 				}
 			}
 		}
-		catch (Exception e) {
+		catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return utilisateur;

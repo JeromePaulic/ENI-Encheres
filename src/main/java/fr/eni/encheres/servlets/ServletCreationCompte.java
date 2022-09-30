@@ -46,8 +46,8 @@ public class ServletCreationCompte extends HttpServlet {
 					pseudo, nom, prenom, email, telephone, motDePasse, confirmationMotDePasse, rue, codePostal, ville, 0, false);
 			request.getSession().setAttribute("utilisateur", utilisateur);
 			response.sendRedirect("accueil");
-		} catch (BusinessException e) {
-			request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
+		} catch (BusinessException be) {
+			request.setAttribute("listeCodesErreur", be.getListeCodesErreur());
 			request.getRequestDispatcher("/WEB-INF/jsp/creationCompte.jsp").forward(request, response);
 		}
 	}
