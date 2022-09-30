@@ -23,7 +23,7 @@
 		<form method="POST">
 	
 			<div>
-			<p><span class="info">Pseudo</span><span class="utilisateur">${utilisateur.getPseudo()}</span></p>
+			<p><span class="info">Pseudo :</span><span class="utilisateur">${utilisateur.getPseudo()}</span></p>
 			</div>
 			<div>
 				<p><span class="info">Nom : </span><span class="utilisateur">${utilisateur.getNom()}</span></p>
@@ -35,7 +35,7 @@
 				<p><span class="info">Email : </span><span class="utilisateur">${utilisateur.getEmail()}</span></p>
 			</div>
 			<div>
-				<p><span class="info">Telephone : </span><span class="utilisateur">${utilisateur.getTelephone()}</span></p>
+				<p><span class="info">Téléphone : </span><span class="utilisateur">${utilisateur.getTelephone()}</span></p>
 			</div>
 			<div>
 				<p><span class="info">Rue : </span><span class="utilisateur">${utilisateur.getAdresse().getRue()}</span></p>
