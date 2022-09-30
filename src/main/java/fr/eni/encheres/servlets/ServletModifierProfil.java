@@ -47,7 +47,7 @@ public class ServletModifierProfil extends HttpServlet {
 		String confirmationMotDePasse = request.getParameter("confirmationMotDePasse");
 		int credit = utilisateurSession.getCredit();
 		
-		Adresse adresse = new Adresse(utilisateurSession.getNoUtilisateur(), rue, codePostal, ville);
+		Adresse adresse = new Adresse(noUtilisateur, rue, codePostal, ville);
 		Utilisateur user = new Utilisateur(noUtilisateur, pseudo, nom, prenom, email, telephone, motDePasse, credit, false, adresse);
 		
 		try {

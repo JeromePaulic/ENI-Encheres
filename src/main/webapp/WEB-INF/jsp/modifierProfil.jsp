@@ -64,7 +64,7 @@
 			<input type="password" id="motDePasseNew" name="motDePasseNew">
 			
 			<label for="confirmationMotDePasse">Confirmation : </label>
-			<input type="password" id="confirmationMotDePasse" name="confirmationMotDePasse" >
+			<input type="password" id="confirmationMotDePasse" name="confirmationMotDePasse"required>
 			
 			<p>Crédit : ${utilisateur.getCredit()}</p>
 			<input class="btn" id="btn-enregistrer" type="submit" value="Enregistrer">

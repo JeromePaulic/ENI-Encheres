@@ -131,9 +131,6 @@ public class UtilisateurManager {
 	private void validerMajUtilisateur(Utilisateur utilisateur, String confirmationMotDePasse,Utilisateur utilisateurSession, String motDePasseNew) throws BusinessException {
 		BusinessException be = new BusinessException();
 		
-		if(!utilisateur.getMotDePasse().equals(utilisateurSession.getMotDePasse())&& motDePasseNew.isEmpty()) {
-			be.ajouterErreur(CodesResultatBLL.ERREUR_MDP);
-		}
 		
 		if(!utilisateur.getPseudo().equals(utilisateurSession.getPseudo())) {
 			if(utilisateurDAO.getUtilisateurByPseudo(utilisateur.getPseudo())!=null){
